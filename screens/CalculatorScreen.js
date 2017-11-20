@@ -5,7 +5,10 @@ import { DigitsContainer, ControllersContainer } from '../containers'
 import * as actions from '../actions'
 
 class CalculatorScreen extends Component {
-  componentWillUpdate (nextProps, nextState) {
+  componentWillUpdate (nextProps) {
+    if (nextProps.calculator.visible === this.props.calculator.visible) {
+      return
+    }
     LayoutAnimation.easeInEaseOut()
   }
 

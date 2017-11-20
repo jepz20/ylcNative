@@ -22,29 +22,7 @@ const INITIAL_STATE = {
     }
   },
   currentDuel: '1',
-  logs: {
-    '1': [
-      {
-        id: '1',
-        operationValue: 100,
-        previousPoints: 8000,
-        currentPoints: 8100,
-        playerId: '1'
-      }, {
-        id: '2',
-        operationValue: -1500,
-        previousPoints: 8000,
-        currentPoints: 6500,
-        playerId: '2'
-      }, {
-        id: '3',
-        operationValue: 100,
-        previousPoints: 8000,
-        currentPoints: 7900,
-        playerId: '1'
-      }
-    ]
-  },
+  logs: { },
   matchResults: {}
 }
 
@@ -52,6 +30,10 @@ const getPlayerPoints = (state, player) => state.players[player].currentPoints
 
 const addToLog = (state, playerId, operationValue, previousPoints) => {
   const { currentDuel, logs } = state
+  if (!logs[currentDuel]) {
+    logs[currentDuel] = []
+  }
+
   logs[currentDuel].push({
     id: Date.now(),
     playerId,

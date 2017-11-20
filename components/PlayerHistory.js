@@ -7,14 +7,15 @@ const POSITIVE = 'green'
 const NEGATIVE = 'red'
 
 const PlayerHistory = ({ logs, playerId, currentDuel }) => {
+  const currentLog = logs[currentDuel] || []
   const renderLog = () => (
-    logs[currentDuel].map(({ previousPoints, operationValue, id, playerId: logPlayerId }) => {
+    currentLog.map(({ previousPoints, operationValue, id, playerId: logPlayerId }) => {
       if (logPlayerId !== playerId) return null
 
       return (
         <View style={[styles.logContainer]} key={id}>
           <Text style={[styles.operationValue, { color: operationValue > 0 ? POSITIVE : NEGATIVE }]} >
-            {operationValue}
+            {operationValue > 0 && '+'}{operationValue}
           </Text>
           <Text style={[styles.currentPoints]} >
             {previousPoints}
@@ -34,7 +35,7 @@ const PlayerHistory = ({ logs, playerId, currentDuel }) => {
 
   return (
     <View style={styles.container}>
-      {!logs[currentDuel].length && renderNoLogs()}
+      {!currentLog.length && renderNoLogs()}
       {renderLog()}
     </View>
   )
