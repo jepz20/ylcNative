@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { PlayerHistory } from '../components'
 
 class DuelHistoryContainer extends Component {
@@ -7,16 +7,13 @@ class DuelHistoryContainer extends Component {
     const { players, logs, currentDuel, onPress } = this.props
     return Object.keys(players).map(key => {
       return (
-        <TouchableWithoutFeedback key={key} onPress={() => onPress(key)} >
-          <View style={{ flex: 1 }}>
-            <PlayerHistory
-              key={key}
-              logs={logs}
-              playerId={players[key].id}
-              currentDuel={currentDuel}
-            />
-          </View>
-        </TouchableWithoutFeedback>
+        <PlayerHistory
+          key={key}
+          logs={logs}
+          playerId={players[key].id}
+          currentDuel={currentDuel}
+          onPress={onPress}
+        />
       )
     })
   }

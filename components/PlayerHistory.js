@@ -1,12 +1,12 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, TouchableWithoutFeedback } from 'react-native'
 import { createArray } from '../utils'
 const DUELS_PER_MATCH = 3
 const NO_LOG_CHARACTER = '.'
 const POSITIVE = 'green'
 const NEGATIVE = 'red'
 
-const PlayerHistory = ({ logs, playerId, currentDuel }) => {
+const PlayerHistory = ({ logs, playerId, currentDuel, onPress }) => {
   const currentLog = logs[currentDuel] || []
   const renderLog = () => (
     currentLog.map(({ previousPoints, operationValue, id, playerId: logPlayerId }) => {
@@ -34,10 +34,14 @@ const PlayerHistory = ({ logs, playerId, currentDuel }) => {
   }
 
   return (
-    <View style={styles.container}>
-      {!currentLog.length && renderNoLogs()}
-      {renderLog()}
-    </View>
+      <ScrollView contentContainerStyle={styles.container}>
+        <TouchableWithoutFeedback onPress={() => onPress(playerId)}>
+          <View>
+            {!currentLog.length && renderNoLogs()}
+            {renderLog()}
+          </View>
+        </TouchableWithoutFeedback>
+      </ScrollView>
   )
 }
 
