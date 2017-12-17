@@ -15,14 +15,15 @@ class CalculatorScreen extends Component {
   render () {
     if (!this.props.calculator.visible) return null
 
-    const { digitPress, erase, calculator } = this.props
+    const { digitPress, erase, calculator, reset } = this.props
     return (
       <View style={styles.container}>
         <ControllersContainer player={calculator.currentPlayer} />
         <DigitsContainer
           value={calculator.value}
-          onDigitPress={digitPress}
-          onErasePress={erase}
+          digitPress={digitPress}
+          erase={erase}
+          reset={reset}
         />
       </View>
     )
@@ -32,7 +33,6 @@ class CalculatorScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
     position: 'absolute',
     right: 0,
     left: 0,

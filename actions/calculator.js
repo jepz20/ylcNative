@@ -24,6 +24,6 @@ export const toggleCalculatorVisibility = (player) => ({
   type: TOGGLE_CALCULATOR_VISIBILITY
 })
 
-export const resetCalculatorValue = () => ({
+export const reset = () => ({
   type: RESET_CALCULATOR_VALUE
 })

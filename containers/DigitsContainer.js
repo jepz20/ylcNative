@@ -1,10 +1,14 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import { Row, TextButton, Button } from '../components'
+import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { Row, TextButton, IconButton } from '../components'
 import { DIGITS } from '../constants'
-import { Entypo } from '@expo/vector-icons'
 
-const DigitsContainer = ({ onDigitPress, onErasePress, value }) => {
+const DigitsContainer = ({
+  digitPress,
+  erase,
+  reset,
+  value
+}) => {
   const renderDigits = () => {
     return DIGITS.map((row, rowIndex) => (
       <Row key={rowIndex}>
@@ -13,7 +17,7 @@ const DigitsContainer = ({ onDigitPress, onErasePress, value }) => {
             <TextButton
               key={digitIndex}
               value={digit}
-              onPress={() => onDigitPress(digit)}
+              onPress={() => digitPress(digit)}
             />
           ))
         }
@@ -23,15 +27,17 @@ const DigitsContainer = ({ onDigitPress, onErasePress, value }) => {
   return (
     <View style={styles.container}>
       <Row style={{ backgroundColor: 'green' }}>
-        <Button>
-          <Entypo name='calculator' size={40} color='#fff' />
-        </Button>
-        <View style={styles.valueContainer}>
-          <Text style={styles.value}>{value}</Text>
-        </View>
-        <Button onPress={onErasePress}>
-          <Entypo name='erase' size={40} color='#fff' />
-        </Button>
+        <IconButton name='calculator' />
+        <TouchableWithoutFeedback onPress={reset}>
+          <View style={styles.valueContainer}>
+            <Text style={styles.value}>{value}</Text>
+          </View>
+        </TouchableWithoutFeedback>
+        <IconButton
+          name='erase'
+          onPress={erase}
+          onLongPress={reset}
+        />
       </Row>
       {renderDigits()}
     </View>

@@ -1,8 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, ScrollView, TouchableWithoutFeedback } from 'react-native'
-import { createArray } from '../utils'
-const DUELS_PER_MATCH = 3
-const NO_LOG_CHARACTER = '.'
+import { mapDueslPerMatch } from '../core'
+import { NO_LOG_CHARACTER } from '../constants'
 const POSITIVE = 'green'
 const NEGATIVE = 'red'
 
@@ -25,23 +24,23 @@ const PlayerHistory = ({ logs, playerId, currentDuel, onPress }) => {
     })
   )
 
-  const renderNoLogs = () => {
-    return createArray(DUELS_PER_MATCH).map((_, index) => (
-      <View style={[styles.logContainer]} key={index}>
+  const renderNoLogs = () => (
+    mapDueslPerMatch((index) => (
+      <View style={styles.logContainer} key={index}>
         <Text style={styles.noLog}>{NO_LOG_CHARACTER}</Text>
       </View>
     ))
-  }
+  )
 
   return (
-      <ScrollView contentContainerStyle={styles.container}>
-        <TouchableWithoutFeedback onPress={() => onPress(playerId)}>
-          <View>
-            {!currentLog.length && renderNoLogs()}
-            {renderLog()}
-          </View>
-        </TouchableWithoutFeedback>
-      </ScrollView>
+    <ScrollView contentContainerStyle={styles.container}>
+      <TouchableWithoutFeedback onPress={() => onPress(playerId)}>
+        <View>
+          {!currentLog.length && renderNoLogs()}
+          {renderLog()}
+        </View>
+      </TouchableWithoutFeedback>
+    </ScrollView>
   )
 }
 

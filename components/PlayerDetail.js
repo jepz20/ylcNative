@@ -2,42 +2,42 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { Indicator, PointsCounter } from '../components'
 import isEmpty from 'lodash/isEmpty'
-import { createArray } from '../utils'
+import { mapDueslPerMatch } from '../core'
 
-const LIFE_POINTS_BACKGROUND = 'green'
+const LIFE_POINTS_BACKGROUND = '#006400'
 
-const PlayerDetail = (props) => {
+const PlayerDetail = ({
+  matchResults,
+  id,
+  name,
+  currentPoints,
+  outerContainerStyle
+}) => {
   const getIndicatorStyle = (winner, player) => {
-    if (!winner) {
-      return null
-    }
-    if (winner === 'tie') {
-      return styles.indicatorTie
-    } else if (winner === player) {
-      return styles.indicatorWin
-    } else {
-      return styles.indicatorLoose
+    switch (winner) {
+      case 'tie':
+        return styles.indicatorTie
+      case player:
+        return styles.indicatorWin
+      case undefined:
+        return ''
+      default:
+        return styles.indicatorLoose
     }
   }
 
   const renderResultsIndicator = () => {
-    const { matchResults, settings, id } = props
-    if (isEmpty(matchResults)) {
-      return null
+    const fillMatchResults = (index) => {
+      const { winner } = matchResults[index] || {}
+      return <Indicator key={index} style={getIndicatorStyle(winner, id)} />
     }
-
-    return createArray(settings.duelsPerMatch).map((_, index) => {
-      const { winner } = matchResults[index + 1] || {}
-      const style = getIndicatorStyle(winner, id)
-      return <Indicator key={index} style={style} />
-    })
+    return mapDueslPerMatch(fillMatchResults)
   }
 
-  const { currentPoints, name } = props
   return (
-    <View style={[styles.container, props.outerContainerStyle]}>
+    <View style={[styles.container, outerContainerStyle]}>
       <View style={styles.resultsContainer}>
-        {renderResultsIndicator()}
+        {!isEmpty(matchResults) && renderResultsIndicator()}
       </View>
       <PointsCounter value={currentPoints} />
       <View style={styles.playerNameContainer}>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: LIFE_POINTS_BACKGROUND,
-    borderColor: '#000',
+    borderColor: '#005a00',
     borderWidth: 1
   },
   resultsContainer: {

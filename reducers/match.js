@@ -5,19 +5,22 @@ import {
   ADD_POINTS,
   SUBSTRACT_POINTS
 } from '../actions/types'
-import cloneDeep from 'lodash/cloneDeep'
 
+// TODO: Use AsyncStorage instead of hardcoded values
 const DEFAULT_POINTS = 8000
+const PLAYER_1_NAME = 'Jose'
+const PLAYER_2_NAME = 'Eduardo'
+
 const INITIAL_STATE = {
   players: {
     '1': {
       id: '1',
-      name: 'Jose',
+      name: PLAYER_1_NAME,
       currentPoints: DEFAULT_POINTS
     },
     '2': {
       id: '2',
-      name: 'Eduardo',
+      name: PLAYER_2_NAME,
       currentPoints: DEFAULT_POINTS
     }
   },
@@ -28,47 +31,74 @@ const INITIAL_STATE = {
 
 const getPlayerPoints = (state, player) => state.players[player].currentPoints
 
-const addToLog = (state, playerId, operationValue, previousPoints) => {
+const addToLog = (state, playerId, operationValue, previousPoints, nextPoints) => {
   const { currentDuel, logs } = state
-  if (!logs[currentDuel]) {
-    logs[currentDuel] = []
-  }
+  const currentLog = logs[currentDuel] || []
 
-  logs[currentDuel].push({
-    id: Date.now(),
-    playerId,
-    operationValue,
-    currentPoints: getPlayerPoints(state, playerId),
-    previousPoints
-  })
+  return {
+    ...logs,
+    [currentDuel]: [
+      ...currentLog, {
+        id: Date.now(),
+        playerId,
+        operationValue,
+        currentPoints: nextPoints,
+        previousPoints
+      }
+    ]
+  }
 }
 
-const setDuelWinner = (state) => {
-  const { players, currentDuel, matchResults } = state
-  const activePlayers = []
-  Object.keys(players).map(key => {
+const setDuelResult = (players, { currentDuel, matchResults }) => {
+  const activePlayers = Object.keys(players).reduce((active, key) => {
     if (players[key].currentPoints > 0) {
-      activePlayers.push(key)
+      return [...active, key]
     }
-  })
 
-  if (activePlayers.length === 1) {
-    matchResults[currentDuel] = { winner: activePlayers[0] }
+    return active
+  }, [])
+
+  const isWinner = activePlayers.length === 1
+  if (isWinner) {
+    return {
+      ...matchResults,
+      [currentDuel]: { winner: activePlayers[0] }
+    }
   }
 
   if (!activePlayers.length) {
-    matchResults[currentDuel] = { winner: 'tie' }
+    return {
+      ...matchResults,
+      [currentDuel]: { winner: 'tie' }
+    }
   }
 }
 
 const operateValue = (state, player, operationValue) => {
-  const newState = cloneDeep(state)
   const previousPoints = getPlayerPoints(state, player)
-  newState.players[player].currentPoints =
-    previousPoints + operationValue
-  addToLog(newState, player, operationValue, previousPoints)
-  setDuelWinner(newState)
-  return newState
+  const nextPoints = previousPoints + operationValue
+  const { [player]: playerDetail } = state.players
+  const players = {
+    ...state.players,
+    [player]: { ...playerDetail, currentPoints: nextPoints }
+  }
+
+  return {
+    ...state,
+    players: players,
+    logs: addToLog(state, player, operationValue, previousPoints, nextPoints),
+    matchResults: setDuelResult(players, state)
+  }
+}
+
+const draw = (state) => {
+  const players = { ...state.players }
+  Object.keys(players).map(key => { players[key].currentPoints = 0 })
+  return {
+    ...state,
+    players: players,
+    matchResults: setDuelResult(players, state)
+  }
 }
 
 export default function (state = INITIAL_STATE, action) {
@@ -88,8 +118,7 @@ export default function (state = INITIAL_STATE, action) {
       operationValue = Math.ceil(getPlayerPoints(state, payload)) * -1
       return operateValue(state, payload, operationValue)
     case DRAW:
-      operationValue = Math.ceil(getPlayerPoints(state, payload)) * -1
-      return operateValue(state, payload, operationValue)
+      return draw(state)
     default:
       return state
   }

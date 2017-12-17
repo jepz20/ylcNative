@@ -7,4 +7,6 @@ export const DIGITS = [
 
 export const COMMON_VALUE_LENGTH = 4
 export const MAX_VALUE_LENGTH = 5
-export const DEFAULT_CALCULATOR_VALUE = '0'
+export const CALCULATOR_DEFAULT_VALUE = '0'
+
+export const NO_LOG_CHARACTER = '.'

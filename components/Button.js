@@ -1,11 +1,11 @@
 import React from 'react'
 import { TouchableHighlight, StyleSheet } from 'react-native'
-const Button = ({ style, children, onPress }) => {
+const Button = ({ style, children, ...props }) => {
   return (
     <TouchableHighlight
       style={[styles.container, style]}
-      onPress={onPress}
       underlayColor='rgba(0, 0, 0, 0.4)'
+      {...props}
     >
       {children}
     </TouchableHighlight>

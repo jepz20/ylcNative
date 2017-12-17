@@ -5,15 +5,19 @@ import {
   TOGGLE_CALCULATOR_VISIBILITY,
   RESET_CALCULATOR_VALUE
 } from '../actions/types'
-import { COMMON_VALUE_LENGTH, MAX_VALUE_LENGTH, DEFAULT_CALCULATOR_VALUE } from '../constants'
+import {
+  COMMON_VALUE_LENGTH,
+  MAX_VALUE_LENGTH,
+  CALCULATOR_DEFAULT_VALUE
+} from '../constants'
 const INITIAL_STATE = {
-  value: DEFAULT_CALCULATOR_VALUE,
+  value: CALCULATOR_DEFAULT_VALUE,
   currentPlayer: '1',
   visible: false
 }
 
 const getCalculatedValue = (currentValue, digit) => {
-  if (currentValue === DEFAULT_CALCULATOR_VALUE) {
+  if (currentValue === CALCULATOR_DEFAULT_VALUE) {
     return digit
   }
 
@@ -23,12 +27,13 @@ const getCalculatedValue = (currentValue, digit) => {
 
   let newValue = `${currentValue}${digit}`
 
-  // if the value contains more than one digit(ej: 0, 000) and the length is too big
-  // the user probably pressed it by mistake in that case just put 1 0
+  // if the value contains more than one digit(ej: 00, 000) and the length
+  // is too big the user probably pressed it by mistake in that case just put
+  // one 0
   let diff = newValue.length - COMMON_VALUE_LENGTH
   if (diff > 0 && digit.length > 1) {
     // put as much digits as necessary to have the common value length
-    newValue = `${currentValue}${digit.slice(0, diff + 1)}`
+    newValue = `${currentValue}${digit.slice(0, -diff) || 0}`
   }
 
   if (newValue.length > MAX_VALUE_LENGTH) {
@@ -39,7 +44,7 @@ const getCalculatedValue = (currentValue, digit) => {
 }
 
 const getErasedValue = currentValue => {
-  return currentValue.slice(0, -1) || DEFAULT_CALCULATOR_VALUE
+  return currentValue.slice(0, -1) || CALCULATOR_DEFAULT_VALUE
 }
 
 export default function (state = INITIAL_STATE, action) {
@@ -56,7 +61,7 @@ export default function (state = INITIAL_STATE, action) {
       return { ...state, currentPlayer: action.payload }
     }
     case RESET_CALCULATOR_VALUE: {
-      return { ...state, value: DEFAULT_CALCULATOR_VALUE }
+      return { ...state, value: CALCULATOR_DEFAULT_VALUE }
     }
     default:
       return state
