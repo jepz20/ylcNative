@@ -9,7 +9,7 @@ const OperatorsContainerWithoutRedux = (props) => {
     player, calculator, addPoints,
     substractPoints, halfPoints,
     scoopMatch, draw, toggleCalculatorVisibility,
-    resetCalculatorValue
+    reset
   } = props
 
   const applyOperation = (type) => {
@@ -31,7 +31,7 @@ const OperatorsContainerWithoutRedux = (props) => {
         break
     }
     toggleCalculatorVisibility()
-    resetCalculatorValue()
+    reset()
   }
 
   return (
