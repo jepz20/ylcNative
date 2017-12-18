@@ -1,3 +1,4 @@
+import { Map } from 'immutable'
 import {
   DIGIT_PRESS,
   ERASE,
@@ -10,11 +11,12 @@ import {
   MAX_VALUE_LENGTH,
   CALCULATOR_DEFAULT_VALUE
 } from '../constants'
-const INITIAL_STATE = {
+
+const INITIAL_STATE = Map({
   value: CALCULATOR_DEFAULT_VALUE,
   currentPlayer: '1',
   visible: false
-}
+})
 
 const getCalculatedValue = (currentValue, digit) => {
   if (currentValue === CALCULATOR_DEFAULT_VALUE) {
@@ -48,20 +50,20 @@ const getErasedValue = currentValue => {
 }
 
 export default function (state = INITIAL_STATE, action) {
-  const { value } = state
+  const value = state.get('value')
   switch (action.type) {
     case DIGIT_PRESS:
-      return { ...state, value: getCalculatedValue(value, action.payload) }
+      return state.merge({ value: getCalculatedValue(value, action.payload) })
     case ERASE:
-      return { ...state, value: getErasedValue(value) }
+      return state.merge({ value: getErasedValue(value) })
     case TOGGLE_CALCULATOR_VISIBILITY: {
-      return { ...state, visible: !state.visible }
+      return state.merge({ visible: !state.get('visible') })
     }
     case SET_CURRENT_PLAYER: {
-      return { ...state, currentPlayer: action.payload }
+      return state.merge({ currentPlayer: action.payload })
     }
     case RESET_CALCULATOR_VALUE: {
-      return { ...state, value: CALCULATOR_DEFAULT_VALUE }
+      return state.merge({ value: CALCULATOR_DEFAULT_VALUE })
     }
     default:
       return state
