@@ -6,21 +6,22 @@ import * as actions from '../actions'
 
 class CalculatorScreen extends Component {
   componentWillUpdate (nextProps) {
-    if (nextProps.calculator.get('visible') === this.props.calculator.get('visible')) {
+    if (nextProps.calculator.visible === this.props.calculator.visible) {
       return
     }
     LayoutAnimation.easeInEaseOut()
   }
 
   render () {
-    if (!this.props.calculator.get('visible')) return null
+    if (!this.props.calculator.visible) return null
 
     const { digitPress, erase, calculator, reset } = this.props
+
     return (
       <View style={styles.container}>
-        <ControllersContainer player={calculator.get('currentPlayer')} />
+        <ControllersContainer player={calculator.currentPlayer} />
         <DigitsContainer
-          value={calculator.get('value')}
+          value={calculator.value}
           digitPress={digitPress}
           erase={erase}
           reset={reset}

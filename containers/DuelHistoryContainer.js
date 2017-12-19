@@ -5,12 +5,13 @@ import { PlayerHistory } from '../components'
 class DuelHistoryContainer extends Component {
   renderPlayersHistory () {
     const { players, logs, currentDuel, onPress } = this.props
-    return Object.keys(players).map(key => {
+
+    return players.valueSeq().map(player => {
       return (
         <PlayerHistory
-          key={key}
+          key={player.id}
           logs={logs}
-          playerId={players[key].id}
+          playerId={player.id}
           currentDuel={currentDuel}
           onPress={onPress}
         />

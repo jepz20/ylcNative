@@ -13,7 +13,9 @@ class Main extends Component {
 
   render () {
     const {
-      match: { logs, players, matchResults, currentDuel }, settings } = this.props
+      match: { logs, players, matchResults, currentDuel }, settings
+    } = this.props
+
     return (
       <View style={styles.container}>
         <View style={styles.LifePointsContainerWrapper}>

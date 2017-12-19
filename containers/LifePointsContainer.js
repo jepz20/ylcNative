@@ -10,15 +10,17 @@ const LifePointsContainer = ({ players, matchResults, settings, onPress }) => {
   return (
     <View style={styles.LifePointsContainerWrapper}>
       {
-        Object.keys(players).map((key, index) => {
+        players.valueSeq().map((player, index) => {
           const style = { borderRightWidth: checkIndexIsEven(index) ? 0 : 1 }
           return (
-            <TouchableWithoutFeedback key={key} onPress={() => onPress(key)} >
+            <TouchableWithoutFeedback key={player.id} onPress={() => onPress(player.id)} >
               <View style={{ flex: 1 }}>
                 <PlayerDetail
                   matchResults={matchResults}
                   outerContainerStyle={style}
-                  {...players[key]}
+                  name={player.name}
+                  currentPoints={player.currentPoints}
+                  id={player.id}
                   settings={settings}
                 />
               </View>
