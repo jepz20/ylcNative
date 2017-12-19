@@ -16,6 +16,7 @@ class CalculatorScreen extends Component {
     if (!this.props.calculator.visible) return null
 
     const { digitPress, erase, calculator, reset } = this.props
+
     return (
       <View style={styles.container}>
         <ControllersContainer player={calculator.currentPlayer} />

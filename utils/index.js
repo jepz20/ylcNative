@@ -1,7 +1,5 @@
-export const mapArrayOfLength = (length) => (fillFunction) => {
-  const newArray = []
-  for (let index = 1; index <= length; index++) {
-    newArray.push(fillFunction(index))
-  }
-  return newArray
+import { Range } from 'immutable'
+
+export const mapRangeOfLength = (length) => (fillFunction) => {
+  return Range(1, length + 1).map(index => fillFunction(index.toString()))
 }

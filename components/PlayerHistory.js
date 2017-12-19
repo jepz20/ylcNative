@@ -6,22 +6,29 @@ const POSITIVE = 'green'
 const NEGATIVE = 'red'
 
 const PlayerHistory = ({ logs, playerId, currentDuel, onPress }) => {
-  const currentLog = logs[currentDuel] || []
-  const renderLog = () => (
-    currentLog.map(({ previousPoints, operationValue, id, playerId: logPlayerId }) => {
-      if (logPlayerId !== playerId) return null
+  const currentLog = logs.get(currentDuel.toString())
 
-      return (
-        <View style={[styles.logContainer]} key={id}>
-          <Text style={[styles.operationValue, { color: operationValue > 0 ? POSITIVE : NEGATIVE }]} >
-            {operationValue > 0 && '+'}{operationValue}
-          </Text>
-          <Text style={[styles.currentPoints]} >
-            {previousPoints}
-          </Text>
-        </View>
-      )
-    })
+  const renderLog = () => (
+    currentLog.valueSeq()
+      .map(({ operationValue, playerId: logPlayerId, previousPoints, id }) => {
+        if (logPlayerId !== playerId) return null
+
+        return (
+          <View style={[styles.logContainer]} key={id}>
+            <Text
+              style={[
+                styles.operationValue,
+                { color: operationValue > 0 ? POSITIVE : NEGATIVE }
+              ]}
+            >
+              {operationValue > 0 && '+'}{operationValue}
+            </Text>
+            <Text style={[styles.currentPoints]} >
+              {previousPoints}
+            </Text>
+          </View>
+        )
+      })
   )
 
   const renderNoLogs = () => (
@@ -36,8 +43,10 @@ const PlayerHistory = ({ logs, playerId, currentDuel, onPress }) => {
     <ScrollView contentContainerStyle={styles.container}>
       <TouchableWithoutFeedback onPress={() => onPress(playerId)}>
         <View>
-          {!currentLog.length && renderNoLogs()}
-          {renderLog()}
+          { currentLog
+            ? renderLog()
+            : renderNoLogs()
+          }
         </View>
       </TouchableWithoutFeedback>
     </ScrollView>

@@ -5,103 +5,113 @@ import {
   ADD_POINTS,
   SUBSTRACT_POINTS
 } from '../actions/types'
+import { Record, Map, List } from 'immutable'
 
 // TODO: Use AsyncStorage instead of hardcoded values
 const DEFAULT_POINTS = 8000
 const PLAYER_1_NAME = 'Jose'
 const PLAYER_2_NAME = 'Eduardo'
 
-const INITIAL_STATE = {
-  players: {
-    '1': {
+const PlayerRecord = Record({
+  id: Date.now(),
+  name: 'Default',
+  currentPoints: DEFAULT_POINTS
+})
+
+const LogsRecord = Record({
+  id: Date.now(),
+  playerId: null,
+  operationValue: 0,
+  currentPoints: null,
+  previousPoints: null
+})
+
+const MatchRecord = Record({
+  winner: null
+})
+
+const INITIAL_STATE = Record({
+  players: Map({
+    '1': new PlayerRecord({
       id: '1',
       name: PLAYER_1_NAME,
       currentPoints: DEFAULT_POINTS
-    },
-    '2': {
+    }),
+    '2': new PlayerRecord({
       id: '2',
       name: PLAYER_2_NAME,
       currentPoints: DEFAULT_POINTS
-    }
-  },
+    })
+  }),
   currentDuel: '1',
-  logs: { },
-  matchResults: {}
-}
+  logs: Map(),
+  matchResults: Map()
+})
 
-const getPlayerPoints = (state, player) => state.players[player].currentPoints
+const getPlayerPoints = (state, player) =>
+  state.players.get(player).currentPoints
 
 const addToLog = (state, playerId, operationValue, previousPoints, nextPoints) => {
   const { currentDuel, logs } = state
-  const currentLog = logs[currentDuel] || []
+  const currentLog = logs[currentDuel] || List()
+  const newLog = currentLog.push(new LogsRecord({
+    id: Date.now(),
+    playerId,
+    operationValue,
+    currentPoints: nextPoints,
+    previousPoints
+  }))
 
-  return {
-    ...logs,
-    [currentDuel]: [
-      ...currentLog, {
-        id: Date.now(),
-        playerId,
-        operationValue,
-        currentPoints: nextPoints,
-        previousPoints
-      }
-    ]
-  }
+  return logs.merge({ [currentDuel]: newLog })
 }
 
 const setDuelResult = (players, { currentDuel, matchResults }) => {
-  const activePlayers = Object.keys(players).reduce((active, key) => {
-    if (players[key].currentPoints > 0) {
-      return [...active, key]
-    }
+  const activePlayers = players
+    .filter(player => player.currentPoints > 0)
 
-    return active
-  }, [])
+  const isWinner = activePlayers.size === 1
 
-  const isWinner = activePlayers.length === 1
   if (isWinner) {
-    return {
-      ...matchResults,
-      [currentDuel]: { winner: activePlayers[0] }
-    }
+    return matchResults.merge({
+      [currentDuel]: new MatchRecord({ winner: activePlayers.first().id })
+    })
   }
 
-  if (!activePlayers.length) {
-    return {
-      ...matchResults,
-      [currentDuel]: { winner: 'tie' }
-    }
+  if (!activePlayers.size) {
+    return matchResults.merge({
+      [currentDuel]: new MatchRecord({ winner: 'tie' })
+    })
   }
+
+  return matchResults
 }
 
 const operateValue = (state, player, operationValue) => {
   const previousPoints = getPlayerPoints(state, player)
   const nextPoints = previousPoints + operationValue
-  const { [player]: playerDetail } = state.players
-  const players = {
-    ...state.players,
-    [player]: { ...playerDetail, currentPoints: nextPoints }
-  }
 
-  return {
-    ...state,
+  const players = state.players.mergeDeep({
+    [player]: {
+      currentPoints: nextPoints
+    }
+  })
+
+  return state.merge({
     players: players,
     logs: addToLog(state, player, operationValue, previousPoints, nextPoints),
     matchResults: setDuelResult(players, state)
-  }
+  })
 }
 
 const draw = (state) => {
-  const players = { ...state.players }
-  Object.keys(players).map(key => { players[key].currentPoints = 0 })
-  return {
-    ...state,
+  const players = state.players.map(player => player.set('currentPoints', 0))
+  return state.merge({
     players: players,
     matchResults: setDuelResult(players, state)
-  }
+  })
 }
 
-export default function (state = INITIAL_STATE, action) {
+export default function (state = new INITIAL_STATE(), action) {
   const { payload, type } = action
   let operationValue
   switch (type) {

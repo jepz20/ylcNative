@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { Indicator, PointsCounter } from '../components'
-import isEmpty from 'lodash/isEmpty'
 import { mapDueslPerMatch } from '../core'
 
 const LIFE_POINTS_BACKGROUND = '#006400'
@@ -28,7 +27,10 @@ const PlayerDetail = ({
 
   const renderResultsIndicator = () => {
     const fillMatchResults = (index) => {
-      const { winner } = matchResults[index] || {}
+      const winner = matchResults.has(index)
+        ? matchResults.get(index).winner
+        : undefined
+
       return <Indicator key={index} style={getIndicatorStyle(winner, id)} />
     }
     return mapDueslPerMatch(fillMatchResults)
@@ -37,7 +39,7 @@ const PlayerDetail = ({
   return (
     <View style={[styles.container, outerContainerStyle]}>
       <View style={styles.resultsContainer}>
-        {!isEmpty(matchResults) && renderResultsIndicator()}
+        {!matchResults.isEmpty() && renderResultsIndicator()}
       </View>
       <PointsCounter value={currentPoints} />
       <View style={styles.playerNameContainer}>
