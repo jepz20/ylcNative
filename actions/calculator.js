@@ -20,7 +20,7 @@ export const setCurrentPlayer = player => ({
   payload: player
 })
 
-export const toggleCalculatorVisibility = (player) => ({
+export const toggleCalculatorVisibility = player => ({
   type: TOGGLE_CALCULATOR_VISIBILITY
 })
 

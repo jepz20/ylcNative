@@ -51,23 +51,30 @@ const INITIAL_STATE = Record({
 const getPlayerPoints = (state, player) =>
   state.players.get(player).currentPoints
 
-const addToLog = (state, playerId, operationValue, previousPoints, nextPoints) => {
+const addToLog = (
+  state,
+  playerId,
+  operationValue,
+  previousPoints,
+  nextPoints
+) => {
   const { currentDuel, logs } = state
   const currentLog = logs[currentDuel] || List()
-  const newLog = currentLog.push(new LogsRecord({
-    id: Date.now(),
-    playerId,
-    operationValue,
-    currentPoints: nextPoints,
-    previousPoints
-  }))
+  const newLog = currentLog.push(
+    new LogsRecord({
+      id: Date.now(),
+      playerId,
+      operationValue,
+      currentPoints: nextPoints,
+      previousPoints
+    })
+  )
 
   return logs.merge({ [currentDuel]: newLog })
 }
 
 const setDuelResult = (players, { currentDuel, matchResults }) => {
-  const activePlayers = players
-    .filter(player => player.currentPoints > 0)
+  const activePlayers = players.filter(player => player.currentPoints > 0)
 
   const isWinner = activePlayers.size === 1
 
@@ -103,7 +110,7 @@ const operateValue = (state, player, operationValue) => {
   })
 }
 
-const draw = (state) => {
+const draw = state => {
   const players = state.players.map(player => player.set('currentPoints', 0))
   return state.merge({
     players: players,

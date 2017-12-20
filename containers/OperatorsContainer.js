@@ -4,15 +4,20 @@ import { TextButton } from '../components'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 
-const OperatorsContainerWithoutRedux = (props) => {
+const OperatorsContainerWithoutRedux = props => {
   const {
-    player, calculator, addPoints,
-    substractPoints, halfPoints,
-    scoopMatch, draw, toggleCalculatorVisibility,
+    player,
+    calculator,
+    addPoints,
+    substractPoints,
+    halfPoints,
+    scoopMatch,
+    draw,
+    toggleCalculatorVisibility,
     reset
   } = props
 
-  const applyOperation = (type) => {
+  const applyOperation = type => {
     switch (type) {
       case 'scoop':
         scoopMatch(player)
@@ -60,7 +65,7 @@ const OperatorsContainerWithoutRedux = (props) => {
           onPress={() => applyOperation('add')}
           value='+'
           textStyle={styles.bigText}
-          />
+        />
         <TextButton
           onPress={() => applyOperation('substract')}
           value='-'
@@ -91,9 +96,8 @@ const mapStateToProps = ({ calculator }) => ({
   calculator
 })
 
-const OperatorsContainer = connect(
-  mapStateToProps,
-  actions
-)(OperatorsContainerWithoutRedux)
+const OperatorsContainer = connect(mapStateToProps, actions)(
+  OperatorsContainerWithoutRedux
+)
 
 export { OperatorsContainer }

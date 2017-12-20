@@ -1,5 +1,11 @@
 import React from 'react'
-import { View, Text, StyleSheet, ScrollView, TouchableWithoutFeedback } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableWithoutFeedback
+} from 'react-native'
 import { mapDueslPerMatch } from '../core'
 import { NO_LOG_CHARACTER } from '../constants'
 const POSITIVE = 'green'
@@ -8,8 +14,9 @@ const NEGATIVE = 'red'
 const PlayerHistory = ({ logs, playerId, currentDuel, onPress }) => {
   const currentLog = logs.get(currentDuel.toString())
 
-  const renderLog = () => (
-    currentLog.valueSeq()
+  const renderLog = () =>
+    currentLog
+      .valueSeq()
       .map(({ operationValue, playerId: logPlayerId, previousPoints, id }) => {
         if (logPlayerId !== playerId) return null
 
@@ -21,33 +28,25 @@ const PlayerHistory = ({ logs, playerId, currentDuel, onPress }) => {
                 { color: operationValue > 0 ? POSITIVE : NEGATIVE }
               ]}
             >
-              {operationValue > 0 && '+'}{operationValue}
+              {operationValue > 0 && '+'}
+              {operationValue}
             </Text>
-            <Text style={[styles.currentPoints]} >
-              {previousPoints}
-            </Text>
+            <Text style={[styles.currentPoints]}>{previousPoints}</Text>
           </View>
         )
       })
-  )
 
-  const renderNoLogs = () => (
-    mapDueslPerMatch((index) => (
+  const renderNoLogs = () =>
+    mapDueslPerMatch(index => (
       <View style={styles.logContainer} key={index}>
         <Text style={styles.noLog}>{NO_LOG_CHARACTER}</Text>
       </View>
     ))
-  )
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <TouchableWithoutFeedback onPress={() => onPress(playerId)}>
-        <View>
-          { currentLog
-            ? renderLog()
-            : renderNoLogs()
-          }
-        </View>
+        <View>{currentLog ? renderLog() : renderNoLogs()}</View>
       </TouchableWithoutFeedback>
     </ScrollView>
   )

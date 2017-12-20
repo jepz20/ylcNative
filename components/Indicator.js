@@ -2,9 +2,7 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
 const Indicator = ({ style }) => {
-  return (
-    <View style={[styles.indicator, style]} />
-  )
+  return <View style={[styles.indicator, style]} />
 }
 
 const styles = StyleSheet.create({

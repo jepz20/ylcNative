@@ -4,11 +4,22 @@ import { connect } from 'react-redux'
 import { OperatorsContainer } from './OperatorsContainer'
 import * as actions from '../actions'
 
-const ControllersContainerWithoutRedux = ({ player, toggleCalculatorVisibility }) => {
+const ControllersContainerWithoutRedux = ({
+  player,
+  toggleCalculatorVisibility
+}) => {
   return (
-    <View style={[styles.container, { flexDirection: player === '1' ? 'row' : 'row-reverse' }]}>
+    <View
+      style={[
+        styles.container,
+        { flexDirection: player === '1' ? 'row' : 'row-reverse' }
+      ]}
+    >
       <View style={{ flex: 1, right: 0 }}>
-        <TouchableWithoutFeedback onPress={toggleCalculatorVisibility} style={{right: 0}}>
+        <TouchableWithoutFeedback
+          onPress={toggleCalculatorVisibility}
+          style={{ right: 0 }}
+        >
           <View style={{ flex: 1 }} />
         </TouchableWithoutFeedback>
       </View>
@@ -27,5 +38,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const ControllersContainer = connect(null, actions)(ControllersContainerWithoutRedux)
+const ControllersContainer = connect(null, actions)(
+  ControllersContainerWithoutRedux
+)
 export { ControllersContainer }

@@ -3,24 +3,17 @@ import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native'
 import { Row, TextButton, IconButton } from '../components'
 import { DIGITS } from '../constants'
 
-const DigitsContainer = ({
-  digitPress,
-  erase,
-  reset,
-  value
-}) => {
+const DigitsContainer = ({ digitPress, erase, reset, value }) => {
   const renderDigits = () => {
     return DIGITS.map((row, rowIndex) => (
       <Row key={rowIndex}>
-        {
-          row.map((digit, digitIndex) => (
-            <TextButton
-              key={digitIndex}
-              value={digit}
-              onPress={() => digitPress(digit)}
-            />
-          ))
-        }
+        {row.map((digit, digitIndex) => (
+          <TextButton
+            key={digitIndex}
+            value={digit}
+            onPress={() => digitPress(digit)}
+          />
+        ))}
       </Row>
     ))
   }
@@ -33,11 +26,7 @@ const DigitsContainer = ({
             <Text style={styles.value}>{value}</Text>
           </View>
         </TouchableWithoutFeedback>
-        <IconButton
-          name='erase'
-          onPress={erase}
-          onLongPress={reset}
-        />
+        <IconButton name='erase' onPress={erase} onLongPress={reset} />
       </Row>
       {renderDigits()}
     </View>

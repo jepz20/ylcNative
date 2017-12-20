@@ -26,7 +26,7 @@ const PlayerDetail = ({
   }
 
   const renderResultsIndicator = () => {
-    const fillMatchResults = (index) => {
+    const fillMatchResults = index => {
       const winner = matchResults.has(index)
         ? matchResults.get(index).winner
         : undefined
@@ -43,9 +43,7 @@ const PlayerDetail = ({
       </View>
       <PointsCounter value={currentPoints} />
       <View style={styles.playerNameContainer}>
-        <Text style={styles.playerNameText}>
-          {name}
-        </Text>
+        <Text style={styles.playerNameText}>{name}</Text>
       </View>
     </View>
   )

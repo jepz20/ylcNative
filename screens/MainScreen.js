@@ -5,7 +5,7 @@ import * as actions from '../actions'
 import { DuelHistoryContainer, LifePointsContainer } from '../containers'
 
 class Main extends Component {
-  toggleCalculatorVisibility = (player) => {
+  toggleCalculatorVisibility = player => {
     const { toggleCalculatorVisibility, setCurrentPlayer } = this.props
     setCurrentPlayer(player)
     toggleCalculatorVisibility()
@@ -13,7 +13,8 @@ class Main extends Component {
 
   render () {
     const {
-      match: { logs, players, matchResults, currentDuel }, settings
+      match: { logs, players, matchResults, currentDuel },
+      settings
     } = this.props
 
     return (
