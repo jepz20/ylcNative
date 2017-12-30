@@ -1,36 +1,45 @@
-import React, { Component } from 'react'
+// @flow
+
+import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { PlayerHistory } from '../components'
+import type { PlayerMap, LogMap } from '../types/match'
+import type { ToggleCalculatorVisibility } from '../actions/calculator'
 
-class DuelHistoryContainer extends Component {
-  renderPlayersHistory () {
-    const { players, logs, currentDuel, onPress } = this.props
+type Props = {
+  players: PlayerMap,
+  logs: LogMap,
+  currentDuel: string,
+  toggleCalculatorVisibility: ToggleCalculatorVisibility
+}
 
-    return players.valueSeq().map(player => {
-      return (
-        <PlayerHistory
-          key={player.id}
-          logs={logs}
-          playerId={player.id}
-          currentDuel={currentDuel}
-          onPress={onPress}
-        />
-      )
-    })
-  }
-
-  render () {
-    return (
-      <View style={[styles.container, this.props.style]}>
-        {this.renderPlayersHistory()}
-      </View>
-    )
-  }
+const DuelHistoryContainer = ({
+  players,
+  logs,
+  currentDuel,
+  toggleCalculatorVisibility
+}: Props) => {
+  return (
+    <View style={[styles.container]}>
+      {players
+        .valueSeq()
+        .map(player => (
+          <PlayerHistory
+            key={player.id}
+            logs={logs}
+            playerId={player.id}
+            currentDuel={currentDuel}
+            toggleCalculatorVisibility={toggleCalculatorVisibility}
+          />
+        ))}
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    flex: 5
   }
 })
 export { DuelHistoryContainer }

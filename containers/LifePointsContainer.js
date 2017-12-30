@@ -1,8 +1,21 @@
+// @flow
+
 import React from 'react'
 import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native'
 import { PlayerDetail } from '../components'
+import type { PlayerMap, ResultMap } from '../types/match'
+import type { ToggleCalculatorVisibility } from '../actions/calculator'
 
-const LifePointsContainer = ({ players, matchResults, settings, onPress }) => {
+type Props = {
+  players: PlayerMap,
+  results: ResultMap,
+  toggleCalculatorVisibility: ToggleCalculatorVisibility
+}
+const LifePointsContainer = ({
+  players,
+  results,
+  toggleCalculatorVisibility
+}: Props) => {
   const checkIndexIsEven = n => {
     return n % 2 === 0
   }
@@ -14,16 +27,15 @@ const LifePointsContainer = ({ players, matchResults, settings, onPress }) => {
         return (
           <TouchableWithoutFeedback
             key={player.id}
-            onPress={() => onPress(player.id)}
+            onPress={() => toggleCalculatorVisibility(player.id)}
           >
             <View style={{ flex: 1 }}>
               <PlayerDetail
-                matchResults={matchResults}
+                results={results}
                 outerContainerStyle={style}
                 name={player.name}
                 currentPoints={player.currentPoints}
                 id={player.id}
-                settings={settings}
               />
             </View>
           </TouchableWithoutFeedback>

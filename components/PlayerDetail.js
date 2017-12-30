@@ -1,45 +1,41 @@
-import React from 'react'
+// @flow
+
+import * as React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { Indicator, PointsCounter } from '../components'
-import { mapDueslPerMatch } from '../core'
+import { mapDueslPerMatch, getDuelResultStatus } from '../core'
+import type { ResultMap } from '../types/match'
 
 const LIFE_POINTS_BACKGROUND = '#006400'
 
-const PlayerDetail = ({
-  matchResults,
+type Props = {
+  results: ResultMap,
+  id: string,
+  name: string,
+  currentPoints: number,
+  outerContainerStyle: any
+}
+
+const PlayerDetail: React.StatelessFunctionalComponent<Props> = ({
+  results,
   id,
   name,
   currentPoints,
   outerContainerStyle
 }) => {
-  const getIndicatorStyle = (winner, player) => {
-    switch (winner) {
-      case 'tie':
-        return styles.indicatorTie
-      case player:
-        return styles.indicatorWin
-      case undefined:
-        return ''
-      default:
-        return styles.indicatorLoose
-    }
-  }
-
   const renderResultsIndicator = () => {
-    const fillMatchResults = index => {
-      const winner = matchResults.has(index)
-        ? matchResults.get(index).winner
-        : undefined
-
-      return <Indicator key={index} style={getIndicatorStyle(winner, id)} />
+    const fillresults = (index: string): React.Element<typeof Indicator> => {
+      // $FlowFixMe
+      const winner = results.has(index) ? results.get(index).winner : undefined
+      return <Indicator key={index} type={getDuelResultStatus(winner, id)} />
     }
-    return mapDueslPerMatch(fillMatchResults)
+    return mapDueslPerMatch(fillresults)
   }
 
   return (
     <View style={[styles.container, outerContainerStyle]}>
       <View style={styles.resultsContainer}>
-        {!matchResults.isEmpty() && renderResultsIndicator()}
+        {!results.isEmpty() && renderResultsIndicator()}
       </View>
       <PointsCounter value={currentPoints} />
       <View style={styles.playerNameContainer}>
@@ -61,15 +57,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     height: 35,
     marginTop: 10
-  },
-  indicatorWin: {
-    backgroundColor: 'green'
-  },
-  indicatorLoose: {
-    backgroundColor: 'red'
-  },
-  indicatorTie: {
-    backgroundColor: 'yellow'
   },
   playerNameContainer: {
     height: 40,

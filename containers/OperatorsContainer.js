@@ -1,23 +1,43 @@
-import React from 'react'
+// @flow
+
+import * as React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { TextButton } from '../components'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
+import type { ToggleCalculatorVisibility, Reset } from '../actions/calculator'
+import type { StateRE } from '../reducers/calculator'
+import type {
+  AddPoints,
+  SubstractPoints,
+  HalfPoints,
+  Draw,
+  ScoopMatch
+} from '../actions/match'
 
-const OperatorsContainerWithoutRedux = props => {
-  const {
-    player,
-    calculator,
-    addPoints,
-    substractPoints,
-    halfPoints,
-    scoopMatch,
-    draw,
-    toggleCalculatorVisibility,
-    reset
-  } = props
-
-  const applyOperation = type => {
+type Props = {
+  player: string,
+  calculator: StateRE,
+  addPoints: AddPoints,
+  substractPoints: SubstractPoints,
+  halfPoints: HalfPoints,
+  scoopMatch: ScoopMatch,
+  draw: Draw,
+  toggleCalculatorVisibility: ToggleCalculatorVisibility,
+  reset: Reset
+}
+const OperatorsContainerWithoutRedux = ({
+  player,
+  calculator,
+  addPoints,
+  substractPoints,
+  halfPoints,
+  scoopMatch,
+  draw,
+  toggleCalculatorVisibility,
+  reset
+}: Props) => {
+  const applyOperation = (type, player) => {
     switch (type) {
       case 'scoop':
         scoopMatch(player)
@@ -35,7 +55,7 @@ const OperatorsContainerWithoutRedux = props => {
         substractPoints(calculator.value, player)
         break
     }
-    toggleCalculatorVisibility()
+    toggleCalculatorVisibility(null)
     reset()
   }
 
@@ -43,33 +63,33 @@ const OperatorsContainerWithoutRedux = props => {
     <View style={styles.container}>
       <View style={[{ flex: 1 }]}>
         <TextButton
-          onPress={() => applyOperation('scoop')}
+          onPress={() => applyOperation('scoop', player)}
           value='SCOOP'
-          textStyle={styles.smallText}
+          size='small'
         />
       </View>
       <View style={[styles.row, { flex: 1 }]}>
         <TextButton
-          onPress={() => applyOperation('draw')}
+          onPress={() => applyOperation('draw', player)}
           value='DRAW'
-          textStyle={styles.smallText}
+          size='small'
         />
         <TextButton
-          onPress={() => applyOperation('halfPoints')}
+          onPress={() => applyOperation('halfPoints', player)}
           value='1/2'
-          textStyle={styles.smallText}
+          size='small'
         />
       </View>
       <View style={[styles.row, { flex: 2 }]}>
         <TextButton
-          onPress={() => applyOperation('add')}
+          onPress={() => applyOperation('add', player)}
           value='+'
-          textStyle={styles.bigText}
+          size='large'
         />
         <TextButton
-          onPress={() => applyOperation('substract')}
+          onPress={() => applyOperation('substract', player)}
           value='-'
-          textStyle={styles.bigText}
+          size='large'
         />
       </View>
     </View>
@@ -83,12 +103,6 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row'
-  },
-  smallText: {
-    fontSize: 15
-  },
-  bigText: {
-    fontSize: 100
   }
 })
 

@@ -1,4 +1,7 @@
+// @flow
+
 import { Record } from 'immutable'
+import type { RecordFactory, RecordOf } from 'immutable'
 import {
   DIGIT_PRESS,
   ERASE,
@@ -6,19 +9,28 @@ import {
   TOGGLE_CALCULATOR_VISIBILITY,
   RESET_CALCULATOR_VALUE
 } from '../actions/types'
+import type { Action } from '../actions/calculator'
 import {
   COMMON_VALUE_LENGTH,
   MAX_VALUE_LENGTH,
   CALCULATOR_DEFAULT_VALUE
 } from '../constants'
 
-const INITIAL_STATE = Record({
+export type State = {
+  value: string,
+  currentPlayer: string | null,
+  visible: boolean
+}
+
+export type StateRE = RecordOf<State>
+
+const INITIAL_STATE: RecordFactory<State> = Record({
   value: CALCULATOR_DEFAULT_VALUE,
-  currentPlayer: '1',
+  currentPlayer: null,
   visible: false
 })
 
-const getCalculatedValue = (currentValue, digit) => {
+const getCalculatedValue = (currentValue: string, digit: string): string => {
   if (currentValue === CALCULATOR_DEFAULT_VALUE) {
     return digit
   }
@@ -45,22 +57,29 @@ const getCalculatedValue = (currentValue, digit) => {
   return newValue
 }
 
-const getErasedValue = currentValue => {
+const getErasedValue = (currentValue: string): string => {
   return currentValue.slice(0, -1) || CALCULATOR_DEFAULT_VALUE
 }
 
-export default function (state = new INITIAL_STATE(), action) {
+export default function (
+  state: StateRE = INITIAL_STATE(),
+  action: Action
+): StateRE {
   const { value } = state
   switch (action.type) {
     case DIGIT_PRESS:
-      return state.merge({ value: getCalculatedValue(value, action.payload) })
+      return state.merge({
+        value: getCalculatedValue(value, action.payload.digit)
+      })
     case ERASE:
       return state.merge({ value: getErasedValue(value) })
-    case TOGGLE_CALCULATOR_VISIBILITY: {
-      return state.merge({ visible: !state.visible })
-    }
+    case TOGGLE_CALCULATOR_VISIBILITY:
+      return state.merge({
+        visible: !state.visible,
+        currentPlayer: action.payload.player
+      })
     case SET_CURRENT_PLAYER: {
-      return state.merge({ currentPlayer: action.payload })
+      return state.merge({ currentPlayer: action.payload.player })
     }
     case RESET_CALCULATOR_VALUE: {
       return state.merge({ value: CALCULATOR_DEFAULT_VALUE })

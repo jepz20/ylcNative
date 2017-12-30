@@ -1,20 +1,22 @@
+// @flow
 import React, { Component } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import * as actions from '../actions'
 import { DuelHistoryContainer, LifePointsContainer } from '../containers'
+import type { StateRE } from '../types/match'
+import type { ToggleCalculatorVisibility } from '../actions/calculator'
 
-class Main extends Component {
-  toggleCalculatorVisibility = player => {
-    const { toggleCalculatorVisibility, setCurrentPlayer } = this.props
-    setCurrentPlayer(player)
-    toggleCalculatorVisibility()
-  }
+type Props = {
+  match: StateRE,
+  toggleCalculatorVisibility: ToggleCalculatorVisibility
+}
 
+class Main extends Component<Props> {
   render () {
     const {
-      match: { logs, players, matchResults, currentDuel },
-      settings
+      match: { logs, players, results, currentDuel },
+      toggleCalculatorVisibility
     } = this.props
 
     return (
@@ -22,17 +24,15 @@ class Main extends Component {
         <View style={styles.LifePointsContainerWrapper}>
           <LifePointsContainer
             players={players}
-            matchResults={matchResults}
-            settings={settings}
-            onPress={this.toggleCalculatorVisibility}
+            results={results}
+            toggleCalculatorVisibility={toggleCalculatorVisibility}
           />
         </View>
         <DuelHistoryContainer
-          style={styles.DuelHistoryContainer}
           logs={logs}
           currentDuel={currentDuel}
           players={players}
-          onPress={this.toggleCalculatorVisibility}
+          toggleCalculatorVisibility={toggleCalculatorVisibility}
         />
       </View>
     )
@@ -48,9 +48,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 2,
     backgroundColor: 'green'
-  },
-  DuelHistoryContainer: {
-    flex: 5
   }
 })
 

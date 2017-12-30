@@ -1,10 +1,18 @@
-import React from 'react'
+// @flow
+
+import * as React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-const PointsCounter = ({ textStyle, containerStyle, value }) => {
+type Props = {
+  value: number
+}
+
+const PointsCounter: React.StatelessFunctionalComponent<Props> = ({
+  value
+}) => {
   return (
-    <View style={[styles.container, containerStyle]}>
-      <Text style={[styles.text, textStyle]}>{value}</Text>
+    <View style={[styles.container]}>
+      <Text style={[styles.text]}>{value}</Text>
     </View>
   )
 }

@@ -1,4 +1,6 @@
-import React from 'react'
+// @flow
+
+import * as React from 'react'
 import {
   View,
   Text,
@@ -6,17 +8,32 @@ import {
   ScrollView,
   TouchableWithoutFeedback
 } from 'react-native'
+import type { LogMap, LogList } from '../types/match'
 import { mapDueslPerMatch } from '../core'
 import { NO_LOG_CHARACTER } from '../constants'
+import { Map } from 'immutable'
+import type { ToggleCalculatorVisibility } from '../actions/calculator'
+
 const POSITIVE = 'green'
 const NEGATIVE = 'red'
+type Props = {
+  logs: LogMap,
+  playerId: string,
+  currentDuel: string,
+  toggleCalculatorVisibility: ToggleCalculatorVisibility
+}
 
-const PlayerHistory = ({ logs, playerId, currentDuel, onPress }) => {
-  const currentLog = logs.get(currentDuel.toString())
+const PlayerHistory = ({
+  logs,
+  playerId,
+  currentDuel,
+  toggleCalculatorVisibility
+}: Props) => {
+  const currentLog: ?LogList = logs.get(currentDuel.toString())
 
-  const renderLog = () =>
+  const renderLog = (currentLog: LogList) =>
     currentLog
-      .valueSeq()
+      .reverse()
       .map(({ operationValue, playerId: logPlayerId, previousPoints, id }) => {
         if (logPlayerId !== playerId) return null
 
@@ -36,17 +53,21 @@ const PlayerHistory = ({ logs, playerId, currentDuel, onPress }) => {
         )
       })
 
-  const renderNoLogs = () =>
+  const renderNoLogs = (chari: string) =>
     mapDueslPerMatch(index => (
       <View style={styles.logContainer} key={index}>
-        <Text style={styles.noLog}>{NO_LOG_CHARACTER}</Text>
+        <Text style={styles.noLog}>{chari}</Text>
       </View>
     ))
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <TouchableWithoutFeedback onPress={() => onPress(playerId)}>
-        <View>{currentLog ? renderLog() : renderNoLogs()}</View>
+      <TouchableWithoutFeedback
+        onPress={() => toggleCalculatorVisibility(playerId)}
+      >
+        <View>
+          {currentLog ? renderLog(currentLog) : renderNoLogs(NO_LOG_CHARACTER)}
+        </View>
       </TouchableWithoutFeedback>
     </ScrollView>
   )
@@ -86,7 +107,7 @@ const styles = StyleSheet.create({
 })
 
 PlayerHistory.defaultProps = {
-  logs: []
+  logs: Map()
 }
 
 export { PlayerHistory }

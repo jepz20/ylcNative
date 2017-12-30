@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "babel-eslint": "^8.0.2",
+    "babel-eslint": "^8.1.2",
+    "eslint-plugin-flowtype": "^2.40.1",
+    "flow-bin": "0.56.0",
     "husky": "^0.14.3",
     "jest-expo": "^22.0.0",
     "lint-staged": "^6.0.0",
@@ -23,14 +25,15 @@
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
     "lint": "standard '**/*.js' | snazzy",
-    "format": "prettier-standard '**/*.{js,jsx}'"
+    "format": "prettier-standard '**/*.{js,jsx}'",
+    "flow": "flow"
   },
   "jest": {
     "preset": "jest-expo"
   },
   "dependencies": {
     "expo": "^23.0.0",
-    "immutable": "^3.8.2",
+    "immutable": "^4.0.0-rc.9",
     "lodash": "^4.17.4",
     "react": "16.0.0",
     "react-native": "^0.50.0",
@@ -39,6 +42,9 @@
   },
   "standard": {
     "parser": "babel-eslint",
+    "plugins": [
+      "flowtype"
+    ],
     "env": {
       "jest": true
     }

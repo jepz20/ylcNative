@@ -1,10 +1,18 @@
+// @flow
 import React, { Component } from 'react'
 import { View, StyleSheet, LayoutAnimation } from 'react-native'
 import { connect } from 'react-redux'
 import { DigitsContainer, ControllersContainer } from '../containers'
 import * as actions from '../actions'
-
-class CalculatorScreen extends Component {
+import type { StateRE } from '../reducers/calculator'
+import type { DigitPress, Erase, Reset } from '../actions/calculator'
+type Props = {
+  calculator: StateRE,
+  digitPress: DigitPress,
+  erase: Erase,
+  reset: Reset
+}
+class CalculatorScreen extends Component<Props> {
   componentWillUpdate (nextProps) {
     if (nextProps.calculator.visible === this.props.calculator.visible) {
       return

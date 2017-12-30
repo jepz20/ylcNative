@@ -1,3 +1,5 @@
+// @flow
+
 export * from './Indicator'
 export * from './PointsCounter'
 export * from './PlayerHistory'

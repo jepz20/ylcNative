@@ -1,3 +1,7 @@
+// @flow
+
+import { Record, Map, List } from 'immutable'
+import type { RecordFactory } from 'immutable'
 import {
   SCOOP_MATCH,
   DRAW,
@@ -5,39 +9,53 @@ import {
   ADD_POINTS,
   SUBSTRACT_POINTS
 } from '../actions/types'
-import { Record, Map, List } from 'immutable'
+import type {
+  StateRE,
+  State,
+  Result,
+  Player,
+  Log,
+  LogList,
+  LogMap,
+  PlayerMap,
+  ResultMap
+} from '../types/match'
+import type { Action } from '../actions/match'
+import { parsePoints } from '../utils'
 
 // TODO: Use AsyncStorage instead of hardcoded values
-const DEFAULT_POINTS = 8000
-const PLAYER_1_NAME = 'Jose'
-const PLAYER_2_NAME = 'Eduardo'
+const DEFAULT_POINTS: number = 8000
+const PLAYER_1_NAME: string = 'Jose'
+const PLAYER_2_NAME: string = 'Eduardo'
 
-const PlayerRecord = Record({
-  id: Date.now(),
+const getId = (): string => Date.now().toString()
+
+export const PlayerRecord: RecordFactory<Player> = Record({
+  id: getId(),
   name: 'Default',
   currentPoints: DEFAULT_POINTS
 })
 
-const LogsRecord = Record({
-  id: Date.now(),
-  playerId: null,
+export const LogsRecord: RecordFactory<Log> = Record({
+  id: getId(),
+  playerId: '0',
   operationValue: 0,
-  currentPoints: null,
-  previousPoints: null
+  currentPoints: 0,
+  previousPoints: 0
 })
 
-const MatchRecord = Record({
+export const resultsRecord: RecordFactory<Result> = Record({
   winner: null
 })
 
-const INITIAL_STATE = Record({
+const INITIAL_STATE: RecordFactory<State> = Record({
   players: Map({
-    '1': new PlayerRecord({
+    '1': PlayerRecord({
       id: '1',
       name: PLAYER_1_NAME,
       currentPoints: DEFAULT_POINTS
     }),
-    '2': new PlayerRecord({
+    '2': PlayerRecord({
       id: '2',
       name: PLAYER_2_NAME,
       currentPoints: DEFAULT_POINTS
@@ -45,95 +63,132 @@ const INITIAL_STATE = Record({
   }),
   currentDuel: '1',
   logs: Map(),
-  matchResults: Map()
+  results: Map()
 })
 
-const getPlayerPoints = (state, player) =>
-  state.players.get(player).currentPoints
+const getPlayerPoints = (players: PlayerMap, player: string): number => {
+  if (players.has(player)) {
+    // $FlowFixMe
+    return players.get(player).currentPoints
+  }
+  console.warn(players, player, 'getPlayerPoint')
+  return 0
+}
 
 const addToLog = (
-  state,
-  playerId,
-  operationValue,
-  previousPoints,
-  nextPoints
-) => {
-  const { currentDuel, logs } = state
-  const currentLog = logs[currentDuel] || List()
-  const newLog = currentLog.push(
-    new LogsRecord({
-      id: Date.now(),
+  currentDuel: string,
+  logs: ?LogMap,
+  playerId: string,
+  operationValue: number,
+  previousPoints: number,
+  nextPoints: number
+): LogMap => {
+  const newLogs: LogMap = logs || Map()
+  const newLog: LogList = (newLogs.get(currentDuel) || List()).push(
+    LogsRecord({
+      id: getId(),
       playerId,
       operationValue,
       currentPoints: nextPoints,
       previousPoints
     })
   )
-
-  return logs.merge({ [currentDuel]: newLog })
+  return newLogs.merge({ [currentDuel]: newLog })
 }
 
-const setDuelResult = (players, { currentDuel, matchResults }) => {
-  const activePlayers = players.filter(player => player.currentPoints > 0)
+const setDuelResult = (
+  players: PlayerMap,
+  currentDuel: string,
+  results: ?ResultMap = Map()
+): ResultMap => {
+  const activePlayers: PlayerMap = players.filter(
+    player => player.currentPoints > 0
+  )
 
-  const isWinner = activePlayers.size === 1
+  const res: ResultMap = results || Map()
+  const isWinner: boolean = activePlayers.size === 1
+  const isTie: boolean = !activePlayers.size
 
   if (isWinner) {
-    return matchResults.merge({
-      [currentDuel]: new MatchRecord({ winner: activePlayers.first().id })
+    return res.merge({
+      [currentDuel]: resultsRecord({
+        // $FlowFixMe
+        winner: activePlayers.first().id
+      })
     })
   }
 
-  if (!activePlayers.size) {
-    return matchResults.merge({
-      [currentDuel]: new MatchRecord({ winner: 'tie' })
+  if (isTie) {
+    return res.merge({
+      [currentDuel]: resultsRecord({ winner: 'tie' })
     })
   }
 
-  return matchResults
+  return res
 }
 
-const operateValue = (state, player, operationValue) => {
-  const previousPoints = getPlayerPoints(state, player)
-  const nextPoints = previousPoints + operationValue
+const operateValue = (
+  state: StateRE,
+  player: string,
+  operationValue: number
+): StateRE => {
+  const previousPoints: number = getPlayerPoints(state.players, player)
+  const nextPoints: number = previousPoints + operationValue
 
   const players = state.players.mergeDeep({
     [player]: {
       currentPoints: nextPoints
     }
   })
-
+  const { currentDuel, logs, results } = state
   return state.merge({
     players: players,
-    logs: addToLog(state, player, operationValue, previousPoints, nextPoints),
-    matchResults: setDuelResult(players, state)
+    logs: addToLog(
+      currentDuel,
+      logs,
+      player,
+      operationValue,
+      previousPoints,
+      nextPoints
+    ),
+    results: setDuelResult(players, currentDuel, results)
   })
 }
 
-const draw = state => {
-  const players = state.players.map(player => player.set('currentPoints', 0))
+const draw = (state: StateRE): StateRE => {
+  const players: PlayerMap = state.players.map(player =>
+    player.set('currentPoints', 0)
+  )
   return state.merge({
-    players: players,
-    matchResults: setDuelResult(players, state)
+    players,
+    results: setDuelResult(players, state.currentDuel, state.results)
   })
 }
 
-export default function (state = new INITIAL_STATE(), action) {
-  const { payload, type } = action
-  let operationValue
-  switch (type) {
-    case ADD_POINTS:
-      operationValue = parseInt(payload.points, 10)
-      return operateValue(state, payload.player, operationValue)
-    case SUBSTRACT_POINTS:
-      operationValue = parseInt(payload.points, 10) * -1
-      return operateValue(state, payload.player, operationValue)
-    case HALF_POINTS:
-      operationValue = Math.ceil(getPlayerPoints(state, payload) / 2) * -1
-      return operateValue(state, payload, operationValue)
-    case SCOOP_MATCH:
-      operationValue = Math.ceil(getPlayerPoints(state, payload)) * -1
-      return operateValue(state, payload, operationValue)
+export default function (state: StateRE = INITIAL_STATE(), action: Action) {
+  switch (action.type) {
+    case ADD_POINTS: {
+      const { points, player } = action.payload
+      let operationValue: number = parsePoints(points)
+      return operateValue(state, player, operationValue)
+    }
+    case SUBSTRACT_POINTS: {
+      const { points, player } = action.payload
+      let operationValue: number = parsePoints(points) * -1
+      return operateValue(state, player, operationValue)
+    }
+    case HALF_POINTS: {
+      const { player } = action.payload
+      let operationValue: number =
+        Math.ceil(getPlayerPoints(state.players, player) / 2) * -1
+      return operateValue(state, player, operationValue)
+    }
+    case SCOOP_MATCH: {
+      const { player } = action.payload
+      let operationValue: number =
+        Math.ceil(getPlayerPoints(state.players, player)) * -1
+      return operateValue(state, player, operationValue)
+    }
     case DRAW:
       return draw(state)
     default:

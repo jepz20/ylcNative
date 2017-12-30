@@ -1,13 +1,22 @@
+// @flow
+
 import React from 'react'
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native'
 import { Row, TextButton, IconButton } from '../components'
 import { DIGITS } from '../constants'
+import type { DigitPress, Erase, Reset } from '../actions/index'
 
-const DigitsContainer = ({ digitPress, erase, reset, value }) => {
+type Props = {
+  value: string,
+  digitPress: DigitPress,
+  erase: Erase,
+  reset: Reset
+}
+const DigitsContainer = ({ digitPress, erase, reset, value }: Props) => {
   const renderDigits = () => {
     return DIGITS.map((row, rowIndex) => (
       <Row key={rowIndex}>
-        {row.map((digit, digitIndex) => (
+        {row.map((digit: string, digitIndex: number) => (
           <TextButton
             key={digitIndex}
             value={digit}
@@ -19,7 +28,7 @@ const DigitsContainer = ({ digitPress, erase, reset, value }) => {
   }
   return (
     <View style={styles.container}>
-      <Row style={{ backgroundColor: 'green' }}>
+      <Row>
         <IconButton name='calculator' />
         <TouchableWithoutFeedback onPress={reset}>
           <View style={styles.valueContainer}>

@@ -1,8 +1,13 @@
-import React from 'react'
+// @flow
+import * as React from 'react'
 import { View, StyleSheet } from 'react-native'
 
-const Row = ({ style, children }) => {
-  return <View style={[styles.container, style]}>{children}</View>
+type Props = {
+  children: React.Node
+}
+
+const Row: React.StatelessFunctionalComponent<Props> = ({ children }) => {
+  return <View style={[styles.container]}>{children}</View>
 }
 
 const styles = StyleSheet.create({

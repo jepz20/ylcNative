@@ -1,5 +1,16 @@
+// @flow
+
 import { Range } from 'immutable'
 
-export const mapRangeOfLength = length => fillFunction => {
-  return Range(1, length + 1).map(index => fillFunction(index.toString()))
+export type FillFunction = (index: string) => any
+
+export const mapRangeOfLength = (length: number) => (
+  fillFunction: FillFunction
+) => {
+  return Range(1, length + 1).map((index: number) =>
+    fillFunction(index.toString())
+  )
 }
+
+export const parsePoints = (value: ?string): number =>
+  value ? parseInt(value, 10) : 0

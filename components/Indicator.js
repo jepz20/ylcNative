@@ -1,19 +1,35 @@
-import React from 'react'
+// @flow
+
+import * as React from 'react'
 import { View, StyleSheet } from 'react-native'
 
-const Indicator = ({ style }) => {
-  return <View style={[styles.indicator, style]} />
+type Props = {
+  type: 'win' | 'loose' | 'tie' | 'default'
+}
+const Indicator: React.StatelessFunctionalComponent<Props> = ({ type }) => {
+  return <View style={[styles.indicator, styles[type]]} />
 }
 
 const styles = StyleSheet.create({
   indicator: {
     borderRadius: 50,
-    backgroundColor: 'grey',
     height: 30,
     width: 30,
     borderWidth: 1,
     elevation: 2,
     borderColor: '#000'
+  },
+  win: {
+    backgroundColor: 'green'
+  },
+  loose: {
+    backgroundColor: 'red'
+  },
+  tie: {
+    backgroundColor: 'yellow'
+  },
+  default: {
+    backgroundColor: 'grey'
   }
 })
 

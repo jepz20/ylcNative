@@ -1,6 +1,19 @@
-import React from 'react'
+// @flow
+
+import type { StyleObj } from 'react-native/Libraries/StyleSheet/StyleSheetTypes'
+
+import * as React from 'react'
 import { TouchableHighlight, StyleSheet } from 'react-native'
-const Button = ({ style, children, ...props }) => {
+type Props = {
+  children: React.Node,
+  style?: StyleObj
+}
+const Button: React.StatelessFunctionalComponent<Props> = ({
+  style,
+  children,
+  pedro,
+  ...props
+}) => {
   return (
     <TouchableHighlight
       style={[styles.container, style]}

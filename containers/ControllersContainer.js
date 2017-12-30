@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native'
 import { connect } from 'react-redux'
