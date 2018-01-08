@@ -104,8 +104,24 @@ describe('Calculator Reducers', () => {
     })
 
     test('erase a number if value is not default', () => {
-      const IS = INITIAL_STATE({ value: '40' })
+      const is = INITIAL_STATE({ value: '40' })
       const expected = INITIAL_STATE({ value: '4' })
+      expect(calculator(is, action)).toEqual(expected)
+    })
+  })
+  describe('toggle calculator', () => {
+    action = { type: T.TOGGLE_CALCULATOR_VISIBILITY, payload: {} }
+    test('it should set the toggle visibility to true', () => {
+      const IS = INITIAL_STATE()
+      action.payload.player = null
+      const expected = INITIAL_STATE({ visible: true })
+      expect(calculator(IS, action)).toEqual(expected)
+    })
+
+    test('it should set the toggle visibility to false', () => {
+      const IS = INITIAL_STATE({ visible: true })
+      action.payload.player = null
+      const expected = INITIAL_STATE({ visible: false })
       expect(calculator(IS, action)).toEqual(expected)
     })
   })
