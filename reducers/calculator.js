@@ -16,6 +16,7 @@ import {
   CALCULATOR_DEFAULT_VALUE
 } from '../constants'
 
+import { parsePoints } from '../utils'
 export type State = {
   value: string,
   currentPlayer: string | null,
@@ -24,7 +25,7 @@ export type State = {
 
 export type StateRE = RecordOf<State>
 
-const INITIAL_STATE: RecordFactory<State> = Record({
+export const INITIAL_STATE: RecordFactory<State> = Record({
   value: CALCULATOR_DEFAULT_VALUE,
   currentPlayer: null,
   visible: false
@@ -32,6 +33,9 @@ const INITIAL_STATE: RecordFactory<State> = Record({
 
 const getCalculatedValue = (currentValue: string, digit: string): string => {
   if (currentValue === CALCULATOR_DEFAULT_VALUE) {
+    if (parsePoints(digit) === parsePoints(CALCULATOR_DEFAULT_VALUE)) {
+      return CALCULATOR_DEFAULT_VALUE
+    }
     return digit
   }
 
