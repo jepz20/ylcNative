@@ -12,7 +12,8 @@ export type Log = {
   playerId: string,
   operationValue: number,
   currentPoints: number,
-  previousPoints: number
+  previousPoints: number,
+  type: string
 }
 
 export type Result = {

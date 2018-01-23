@@ -14,13 +14,6 @@ describe('Calculator Actions', () => {
     })
   })
 
-  test('setCurrentPlayer', () => {
-    expect(A.setCurrentPlayer('1')).toEqual({
-      type: T.SET_CURRENT_PLAYER,
-      payload: { player: '1' }
-    })
-  })
-
   test('toggleCalculatorVisibility', () => {
     expect(A.toggleCalculatorVisibility('1')).toEqual({
       type: T.TOGGLE_CALCULATOR_VISIBILITY,

@@ -14,6 +14,7 @@ import type {
   Draw,
   ScoopMatch
 } from '../actions/match'
+import { getId } from '../utils'
 
 type Props = {
   player: string,
@@ -40,19 +41,19 @@ const OperatorsContainerWithoutRedux = ({
   const applyOperation = (type, player) => {
     switch (type) {
       case 'scoop':
-        scoopMatch(player)
+        scoopMatch(player, getId())
         break
       case 'draw':
-        draw()
+        draw(getId())
         break
       case 'halfPoints':
-        halfPoints(player)
+        halfPoints(player, getId())
         break
       case 'add':
-        addPoints(calculator.value, player)
+        addPoints(calculator.value, player, getId())
         break
       case 'substract':
-        substractPoints(calculator.value, player)
+        substractPoints(calculator.value, player, getId())
         break
     }
     toggleCalculatorVisibility(null)

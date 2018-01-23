@@ -12,6 +12,10 @@ describe('Utils parsePoints', () => {
   test('to parse point with a string with 0 at the end', () => {
     expect(Utils.parsePoints('329000')).toBe(329000)
   })
+
+  test('parse point returns 0 when theres no value', () => {
+    expect(Utils.parsePoints()).toBe(0)
+  })
 })
 
 describe('Utils mapRangeOfLength', () => {

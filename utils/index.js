@@ -17,3 +17,5 @@ export const mapRangeOfLength = (length: number) => (
 
 export const parsePoints = (value: ?string): number =>
   value ? parseInt(value, 10) : 0
+
+export const getId = (): string => Date.now().toString()

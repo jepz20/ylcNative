@@ -5,7 +5,6 @@ import type { RecordFactory, RecordOf } from 'immutable'
 import {
   DIGIT_PRESS,
   ERASE,
-  SET_CURRENT_PLAYER,
   TOGGLE_CALCULATOR_VISIBILITY,
   RESET_CALCULATOR_VALUE
 } from '../actions/types'
@@ -82,9 +81,6 @@ export default function (
         visible: !state.visible,
         currentPlayer: action.payload.player
       })
-    case SET_CURRENT_PLAYER: {
-      return state.merge({ currentPlayer: action.payload.player })
-    }
     case RESET_CALCULATOR_VALUE: {
       return state.merge({ value: CALCULATOR_DEFAULT_VALUE })
     }

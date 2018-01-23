@@ -21,14 +21,9 @@ import type {
   ResultMap
 } from '../types/match'
 import type { Action } from '../actions/match'
-import { parsePoints } from '../utils'
-
+import { parsePoints, getId } from '../utils'
 // TODO: Use AsyncStorage instead of hardcoded values
-const DEFAULT_POINTS: number = 8000
-const PLAYER_1_NAME: string = 'Jose'
-const PLAYER_2_NAME: string = 'Eduardo'
-
-const getId = (): string => Date.now().toString()
+import { DEFAULT_POINTS, PLAYER_1_NAME, PLAYER_2_NAME } from '../constants'
 
 export const PlayerRecord: RecordFactory<Player> = Record({
   id: getId(),
@@ -41,14 +36,15 @@ export const LogsRecord: RecordFactory<Log> = Record({
   playerId: '0',
   operationValue: 0,
   currentPoints: 0,
-  previousPoints: 0
+  previousPoints: 0,
+  type: 'operation'
 })
 
-export const resultsRecord: RecordFactory<Result> = Record({
+export const ResultsRecord: RecordFactory<Result> = Record({
   winner: null
 })
 
-const INITIAL_STATE: RecordFactory<State> = Record({
+export const INITIAL_STATE: RecordFactory<State> = Record({
   players: Map({
     '1': PlayerRecord({
       id: '1',
@@ -66,52 +62,57 @@ const INITIAL_STATE: RecordFactory<State> = Record({
   results: Map()
 })
 
-const getPlayerPoints = (players: PlayerMap, player: string): number => {
+export const getPlayerPoints = (players: PlayerMap, player: string): number => {
   if (players.has(player)) {
     // $FlowFixMe
     return players.get(player).currentPoints
   }
-  console.warn(players, player, 'getPlayerPoint')
   return 0
 }
 
-const addToLog = (
+export const playerExist = (players: PlayerMap, player: string) =>
+  players.has(player)
+
+export const addToLog = (
   currentDuel: string,
-  logs: ?LogMap,
+  logs: LogMap,
   playerId: string,
   operationValue: number,
   previousPoints: number,
-  nextPoints: number
+  nextPoints: number,
+  logId: string,
+  type: string = 'operation'
 ): LogMap => {
-  const newLogs: LogMap = logs || Map()
+  const newLogs: LogMap = logs
   const newLog: LogList = (newLogs.get(currentDuel) || List()).push(
     LogsRecord({
-      id: getId(),
+      id: logId,
       playerId,
       operationValue,
       currentPoints: nextPoints,
-      previousPoints
+      previousPoints,
+      type
     })
   )
   return newLogs.merge({ [currentDuel]: newLog })
 }
 
-const setDuelResult = (
+export const setDuelResult = (
   players: PlayerMap,
   currentDuel: string,
-  results: ?ResultMap = Map()
+  results: ResultMap
 ): ResultMap => {
   const activePlayers: PlayerMap = players.filter(
     player => player.currentPoints > 0
   )
 
-  const res: ResultMap = results || Map()
+  const res: ResultMap = results
   const isWinner: boolean = activePlayers.size === 1
   const isTie: boolean = !activePlayers.size
 
   if (isWinner) {
     return res.merge({
-      [currentDuel]: resultsRecord({
+      [currentDuel]: ResultsRecord({
         // $FlowFixMe
         winner: activePlayers.first().id
       })
@@ -120,18 +121,21 @@ const setDuelResult = (
 
   if (isTie) {
     return res.merge({
-      [currentDuel]: resultsRecord({ winner: 'tie' })
+      [currentDuel]: ResultsRecord({ winner: 'tie' })
     })
   }
 
   return res
 }
 
-const operateValue = (
+export const operateValue = (
   state: StateRE,
   player: string,
-  operationValue: number
+  operationValue: number,
+  logId: string
 ): StateRE => {
+  if (!playerExist(state.players, player)) return state
+
   const previousPoints: number = getPlayerPoints(state.players, player)
   const nextPoints: number = previousPoints + operationValue
 
@@ -149,48 +153,54 @@ const operateValue = (
       player,
       operationValue,
       previousPoints,
-      nextPoints
+      nextPoints,
+      logId
     ),
     results: setDuelResult(players, currentDuel, results)
   })
 }
 
-const draw = (state: StateRE): StateRE => {
+const draw = (state: StateRE, logId: string): StateRE => {
   const players: PlayerMap = state.players.map(player =>
     player.set('currentPoints', 0)
   )
+  const { currentDuel, logs, results } = state
   return state.merge({
     players,
-    results: setDuelResult(players, state.currentDuel, state.results)
+    logs: addToLog(currentDuel, logs, '-1', 0, 0, 0, logId, 'draw'),
+    results: setDuelResult(players, currentDuel, results)
   })
 }
 
 export default function (state: StateRE = INITIAL_STATE(), action: Action) {
   switch (action.type) {
     case ADD_POINTS: {
-      const { points, player } = action.payload
-      let operationValue: number = parsePoints(points)
-      return operateValue(state, player, operationValue)
+      const { points, player, logId } = action.payload
+      const operationValue = parsePoints(points)
+      if (operationValue < 1) return state
+      return operateValue(state, player, operationValue, logId)
     }
     case SUBSTRACT_POINTS: {
-      const { points, player } = action.payload
-      let operationValue: number = parsePoints(points) * -1
-      return operateValue(state, player, operationValue)
+      const { points, player, logId } = action.payload
+      const operationValue = parsePoints(points) * -1
+      if (operationValue * -1 < 1) return state
+      return operateValue(state, player, operationValue, logId)
     }
     case HALF_POINTS: {
-      const { player } = action.payload
-      let operationValue: number =
+      const { player, logId } = action.payload
+      const operationValue =
         Math.ceil(getPlayerPoints(state.players, player) / 2) * -1
-      return operateValue(state, player, operationValue)
+      return operateValue(state, player, operationValue, logId)
     }
     case SCOOP_MATCH: {
-      const { player } = action.payload
-      let operationValue: number =
+      const { player, logId } = action.payload
+      const operationValue =
         Math.ceil(getPlayerPoints(state.players, player)) * -1
-      return operateValue(state, player, operationValue)
+      return operateValue(state, player, operationValue, logId)
     }
     case DRAW:
-      return draw(state)
+      const { logId } = action.payload
+      return draw(state, logId)
     default:
       return state
   }

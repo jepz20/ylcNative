@@ -1,6 +1,10 @@
 import calculator, { INITIAL_STATE } from './calculator'
 import * as T from '../actions/types'
-import { COMMON_VALUE_LENGTH, MAX_VALUE_LENGTH } from '../constants'
+import {
+  COMMON_VALUE_LENGTH,
+  MAX_VALUE_LENGTH,
+  CALCULATOR_DEFAULT_VALUE
+} from '../constants'
 
 describe('Calculator Reducers', () => {
   describe('Digit Press', () => {
@@ -110,7 +114,7 @@ describe('Calculator Reducers', () => {
     })
   })
   describe('toggle calculator', () => {
-    action = { type: T.TOGGLE_CALCULATOR_VISIBILITY, payload: {} }
+    const action = { type: T.TOGGLE_CALCULATOR_VISIBILITY, payload: {} }
     test('it should set the toggle visibility to true', () => {
       const IS = INITIAL_STATE()
       action.payload.player = null
@@ -122,6 +126,17 @@ describe('Calculator Reducers', () => {
       const IS = INITIAL_STATE({ visible: true })
       action.payload.player = null
       const expected = INITIAL_STATE({ visible: false })
+      expect(calculator(IS, action)).toEqual(expected)
+    })
+  })
+  describe('reset calculator', () => {
+    const action = { type: T.RESET_CALCULATOR_VALUE, payload: {} }
+    test('it should set the calculator value to the default', () => {
+      const IS = INITIAL_STATE({ visible: true, value: 300 })
+      const expected = INITIAL_STATE({
+        visible: true,
+        value: CALCULATOR_DEFAULT_VALUE
+      })
       expect(calculator(IS, action)).toEqual(expected)
     })
   })
