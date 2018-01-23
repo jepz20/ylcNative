@@ -50,11 +50,7 @@ const getCalculatedValue = (currentValue: string, digit: string): string => {
   let diff = newValue.length - COMMON_VALUE_LENGTH
   if (diff > 0 && digit.length > 1) {
     // put as much digits as necessary to have the common value length
-    newValue = `${currentValue}${digit.slice(0, -diff) || 0}`
-  }
-
-  if (newValue.length > MAX_VALUE_LENGTH) {
-    newValue = newValue.slice(0, MAX_VALUE_LENGTH)
+    newValue = `${currentValue}${digit.slice(0, -diff)}`
   }
 
   return newValue

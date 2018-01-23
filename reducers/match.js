@@ -73,6 +73,10 @@ export const getPlayerPoints = (players: PlayerMap, player: string): number => {
 export const playerExist = (players: PlayerMap, player: string) =>
   players.has(player)
 
+export const duelHasEnded = (results: ResultMap, currentDuel: string) => {
+  return results.has(currentDuel)
+}
+
 export const addToLog = (
   currentDuel: string,
   logs: LogMap,
@@ -135,6 +139,7 @@ export const operateValue = (
   logId: string
 ): StateRE => {
   if (!playerExist(state.players, player)) return state
+  if (duelHasEnded(state.results, state.currentDuel)) return state
 
   const previousPoints: number = getPlayerPoints(state.players, player)
   const nextPoints: number = previousPoints + operationValue

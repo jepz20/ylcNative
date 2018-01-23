@@ -77,6 +77,32 @@ describe('Match Reducers', () => {
       action.payload.logId = '1'
       expect(match(IS, action)).toEqual(IS)
     })
+
+    test('dont add when the duel has ended', () => {
+      const IS = INITIAL_STATE({
+        players: Map({
+          '1': PlayerRecord({
+            id: '1',
+            name: 'test',
+            currentPoints: 8000
+          }),
+          '2': PlayerRecord({
+            id: '2',
+            name: 'test2',
+            currentPoints: 8000
+          })
+        }),
+        results: Map({
+          '1': ResultsRecord({
+            winner: '1'
+          })
+        })
+      })
+      action.payload.points = '2500'
+      action.payload.player = '1'
+      action.payload.logId = '1'
+      expect(match(IS, action)).toEqual(IS)
+    })
   })
   describe('Substract Points', () => {
     const action = { type: T.SUBSTRACT_POINTS, payload: {} }
