@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Indicator renders with default props as neutral 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderColor": "#000",
+        "borderRadius": 50,
+        "borderWidth": 1,
+        "elevation": 2,
+        "height": 30,
+        "width": 30,
+      },
+      Object {
+        "backgroundColor": "grey",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`Indicator renders with type loose  1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderColor": "#000",
+        "borderRadius": 50,
+        "borderWidth": 1,
+        "elevation": 2,
+        "height": 30,
+        "width": 30,
+      },
+      Object {
+        "backgroundColor": "red",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`Indicator renders with type neutral 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderColor": "#000",
+        "borderRadius": 50,
+        "borderWidth": 1,
+        "elevation": 2,
+        "height": 30,
+        "width": 30,
+      },
+      Object {
+        "backgroundColor": "grey",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`Indicator renders with type tie  1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderColor": "#000",
+        "borderRadius": 50,
+        "borderWidth": 1,
+        "elevation": 2,
+        "height": 30,
+        "width": 30,
+      },
+      Object {
+        "backgroundColor": "red",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`Indicator renders with type win  1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderColor": "#000",
+        "borderRadius": 50,
+        "borderWidth": 1,
+        "elevation": 2,
+        "height": 30,
+        "width": 30,
+      },
+      Object {
+        "backgroundColor": "green",
+      },
+    ]
+  }
+/>
+`;

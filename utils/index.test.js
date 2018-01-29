@@ -1,4 +1,7 @@
 import * as Utils from './index'
+import React from 'react'
+import { View, Text } from 'react-native'
+
 import { Seq } from 'immutable'
 describe('Utils parsePoints', () => {
   test('to parse point with a string', () => {
@@ -47,5 +50,21 @@ describe('Utils mapRangeOfLength', () => {
     expect(Utils.mapRangeOfLength(-1)).toThrowError(
       'length should be greater than 1'
     )
+  })
+})
+
+describe('renderEl', () => {
+  test('should return the string wrap in text component', () => {
+    expect(Utils.renderEl('test')).toMatchSnapshot()
+  })
+
+  test('should return the same component', () => {
+    expect(
+      Utils.renderEl(
+        <View>
+          <Text>Hola</Text>
+        </View>
+      )
+    ).toMatchSnapshot()
   })
 })

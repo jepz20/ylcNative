@@ -6,21 +6,27 @@ import { Entypo } from '@expo/vector-icons'
 
 type Props = {
   name: string,
-  size: number,
-  color: string
+  size?: number,
+  color?: string
 }
 
-const IconButton = ({ name, size, color, ...props }: Props) => {
+const SIZES = {
+  small: 20,
+  medium: 40,
+  large: 60
+}
+
+const IconButton: React.StatelessFunctionalComponent<Props> = ({
+  name,
+  size = 'medium',
+  color = '#fff',
+  ...props
+}) => {
   return (
     <Button {...props}>
-      <Entypo name={name} size={size} color={color} />
+      <Entypo name={name} size={SIZES[size]} color={color} />
     </Button>
   )
-}
-
-IconButton.defaultProps = {
-  size: 40,
-  color: '#FFF'
 }
 
 export { IconButton }
