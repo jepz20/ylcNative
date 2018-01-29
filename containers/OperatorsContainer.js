@@ -66,6 +66,7 @@ const OperatorsContainerWithoutRedux = ({
         <TextButton
           onPress={() => applyOperation('scoop', player)}
           value='SCOOP'
+          name='scoop'
           size='small'
         />
       </View>
@@ -74,11 +75,13 @@ const OperatorsContainerWithoutRedux = ({
           onPress={() => applyOperation('draw', player)}
           value='DRAW'
           size='small'
+          name='draw'
         />
         <TextButton
           onPress={() => applyOperation('halfPoints', player)}
           value='1/2'
           size='small'
+          name='halfPoints'
         />
       </View>
       <View style={[styles.row, { flex: 2 }]}>
@@ -86,11 +89,13 @@ const OperatorsContainerWithoutRedux = ({
           onPress={() => applyOperation('add', player)}
           value='+'
           size='large'
+          name='add'
         />
         <TextButton
           onPress={() => applyOperation('substract', player)}
           value='-'
           size='large'
+          name='substract'
         />
       </View>
     </View>
