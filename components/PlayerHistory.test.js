@@ -121,11 +121,9 @@ describe('PlayerHistory', () => {
         toggleCalculatorVisibility={mockToggle}
         logs={log}
       />
-    )
-    const playerDetailInstance = playerDetail.root
-    const touchable = playerDetailInstance.findByType(TouchableWithoutFeedback)
+    ).root
+    const touchable = playerDetail.findByType(TouchableWithoutFeedback)
     touchable.props.onPress()
-    playerDetail.root.props.toggleCalculatorVisibility()
     expect(mockToggle).toBeCalled()
   })
 })

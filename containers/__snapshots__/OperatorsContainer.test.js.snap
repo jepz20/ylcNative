@@ -1,5 +1,162 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`OperatorsContainer add of a player 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "logId": 1,
+      "player": "1",
+    },
+    "type": "@match/scoop_match",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+  Object {
+    "payload": Object {
+      "logId": 1,
+    },
+    "type": "@draw",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+  Object {
+    "payload": Object {
+      "logId": 1,
+      "player": "1",
+    },
+    "type": "@match/half_points",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+]
+`;
+
+exports[`OperatorsContainer adds points to a player 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "logId": 1,
+      "player": "1",
+    },
+    "type": "@match/scoop_match",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+  Object {
+    "payload": Object {
+      "logId": 1,
+    },
+    "type": "@draw",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+  Object {
+    "payload": Object {
+      "logId": 1,
+      "player": "1",
+    },
+    "type": "@match/half_points",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+  Object {
+    "payload": Object {
+      "logId": 1,
+      "player": "1",
+      "points": "100",
+    },
+    "type": "@match/add_points",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+]
+`;
+
+exports[`OperatorsContainer draws a duel 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "logId": 1,
+      "player": "1",
+    },
+    "type": "@match/scoop_match",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+  Object {
+    "payload": Object {
+      "logId": 1,
+    },
+    "type": "@draw",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+]
+`;
+
 exports[`OperatorsContainer renders correctly 1`] = `
 <View
   style={
@@ -624,4 +781,111 @@ exports[`OperatorsContainer renders with no props 1`] = `
     </View>
   </View>
 </View>
+`;
+
+exports[`OperatorsContainer scoops a duel 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "logId": 1,
+      "player": "1",
+    },
+    "type": "@match/scoop_match",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+]
+`;
+
+exports[`OperatorsContainer substract points to a player 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "logId": 1,
+      "player": "1",
+    },
+    "type": "@match/scoop_match",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+  Object {
+    "payload": Object {
+      "logId": 1,
+    },
+    "type": "@draw",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+  Object {
+    "payload": Object {
+      "logId": 1,
+      "player": "1",
+    },
+    "type": "@match/half_points",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+  Object {
+    "payload": Object {
+      "logId": 1,
+      "player": "1",
+      "points": "100",
+    },
+    "type": "@match/add_points",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+  Object {
+    "payload": Object {
+      "logId": 1,
+      "player": "1",
+      "points": "100",
+    },
+    "type": "@substract_points",
+  },
+  Object {
+    "payload": Object {
+      "player": null,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+  Object {
+    "type": "@rest_calculator_value",
+  },
+]
 `;

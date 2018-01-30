@@ -1,0 +1,471 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LifePointsContainer renders with 1 player 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "green",
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }
+>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID={undefined}
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#006400",
+          "borderColor": "#005a00",
+          "borderWidth": 1,
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "height": 35,
+            "justifyContent": "space-around",
+            "marginTop": 10,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#000",
+                "borderRadius": 50,
+                "borderWidth": 1,
+                "elevation": 2,
+                "height": 30,
+                "width": 30,
+              },
+              Object {
+                "backgroundColor": "green",
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#000",
+                "borderRadius": 50,
+                "borderWidth": 1,
+                "elevation": 2,
+                "height": 30,
+                "width": 30,
+              },
+              Object {
+                "backgroundColor": "red",
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#000",
+                "borderRadius": 50,
+                "borderWidth": 1,
+                "elevation": 2,
+                "height": 30,
+                "width": 30,
+              },
+              Object {
+                "backgroundColor": "yellow",
+              },
+            ]
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#fff",
+              "fontSize": 65,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          8000
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "height": 40,
+            "justifyContent": "flex-end",
+            "marginBottom": 5,
+            "marginLeft": 5,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#fff",
+              "fontSize": 17,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          test 1
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`LifePointsContainer renders with 2 players 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "green",
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }
+>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID={undefined}
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#006400",
+          "borderColor": "#005a00",
+          "borderWidth": 1,
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "height": 35,
+            "justifyContent": "space-around",
+            "marginTop": 10,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#000",
+                "borderRadius": 50,
+                "borderWidth": 1,
+                "elevation": 2,
+                "height": 30,
+                "width": 30,
+              },
+              Object {
+                "backgroundColor": "green",
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#000",
+                "borderRadius": 50,
+                "borderWidth": 1,
+                "elevation": 2,
+                "height": 30,
+                "width": 30,
+              },
+              Object {
+                "backgroundColor": "red",
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#000",
+                "borderRadius": 50,
+                "borderWidth": 1,
+                "elevation": 2,
+                "height": 30,
+                "width": 30,
+              },
+              Object {
+                "backgroundColor": "yellow",
+              },
+            ]
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#fff",
+              "fontSize": 65,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          8000
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "height": 40,
+            "justifyContent": "flex-end",
+            "marginBottom": 5,
+            "marginLeft": 5,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#fff",
+              "fontSize": 17,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          test 1
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    accessibilityComponentType={undefined}
+    accessibilityLabel={undefined}
+    accessibilityTraits={undefined}
+    accessible={true}
+    hitSlop={undefined}
+    nativeID={undefined}
+    onLayout={undefined}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+    testID={undefined}
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#006400",
+          "borderColor": "#005a00",
+          "borderWidth": 1,
+          "flex": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+            "height": 35,
+            "justifyContent": "space-around",
+            "marginTop": 10,
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#000",
+                "borderRadius": 50,
+                "borderWidth": 1,
+                "elevation": 2,
+                "height": 30,
+                "width": 30,
+              },
+              Object {
+                "backgroundColor": "red",
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#000",
+                "borderRadius": 50,
+                "borderWidth": 1,
+                "elevation": 2,
+                "height": 30,
+                "width": 30,
+              },
+              Object {
+                "backgroundColor": "green",
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "borderColor": "#000",
+                "borderRadius": 50,
+                "borderWidth": 1,
+                "elevation": 2,
+                "height": 30,
+                "width": 30,
+              },
+              Object {
+                "backgroundColor": "yellow",
+              },
+            ]
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#fff",
+              "fontSize": 65,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          8000
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "height": 40,
+            "justifyContent": "flex-end",
+            "marginBottom": 5,
+            "marginLeft": 5,
+          }
+        }
+      >
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+          style={
+            Object {
+              "color": "#fff",
+              "fontSize": 17,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          test 2
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`LifePointsContainer renders with no props  1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "green",
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }
+/>
+`;
