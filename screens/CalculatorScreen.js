@@ -17,12 +17,8 @@ export class CalculatorScreen extends Component<Props> {
     calculator: {}
   }
 
-  componentDidMount () {
-    console.log('I was mounted', this.props.calculator)
-  }
-
   componentWillUpdate (nextProps: Props) {
-    console.log('here', nextProps, this.props, nextProps.calculator)
+    console.log('UPDATED', nextProps.calculator, this.props.calculator)
 
     if (nextProps.calculator.visible === this.props.calculator.visible) {
       return

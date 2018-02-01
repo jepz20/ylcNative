@@ -1,19 +1,41 @@
 import React from 'react'
 import 'react-native'
 import PropTypes from 'prop-types'
-import configureStore from 'redux-mock-store'
 import renderer from 'react-test-renderer'
-
+import configureStore from 'redux-mock-store'
 import CalculatorScreen from './CalculatorScreen'
 
-function testProvider (store) {
+const myStore = () => {
+  const state = { calculator: { visible: true } }
+  return {
+    getState: () => {
+      return state
+    },
+    subscribe: () => {},
+    dispatch: () => {},
+    changeBool: () => {
+      state.calculator.visible = !state.calculator.visible
+    }
+  }
+}
+function testProvider () {
   class TestProvider extends React.Component {
     getChildContext () {
-      return { store }
+      console.log('I set the context', this.store.getState())
+      // console.log(store({ calculator: { visible: bool } }).getState(), 'STATE')
+      return { store: this.store }
+    }
+
+    constructor (props, context) {
+      super(props, context)
+      this.store = props.store
+      console.log(context, 'sup')
+      // this[storeKey] = props.store;
     }
 
     render () {
-      return this.props.children
+      console.log('I render')
+      return React.Children.only(this.props.children)
     }
   }
 
@@ -25,11 +47,11 @@ function testProvider (store) {
 
 describe('CalculatorScreen', () => {
   test('renders when not visible', () => {
-    const mockStore = configureStore([])({ calculator: { visible: false } })
-    const TestProvider = testProvider(mockStore)
+    const TestProvider = testProvider()
+    const store = myStore()
     const calculatorScreen = renderer
       .create(
-        <TestProvider>
+        <TestProvider store={store}>
           <CalculatorScreen />
         </TestProvider>
       )
@@ -38,31 +60,20 @@ describe('CalculatorScreen', () => {
   })
 
   test('renders when visible', () => {
-    const mockStore = configureStore([])({ calculator: { visible: false } })
-    let TestProvider = testProvider(mockStore)
+    const TestProvider = testProvider()
+    const store = myStore()
     const calculatorScreen = renderer.create(
-      <TestProvider>
+      <TestProvider store={store}>
         <CalculatorScreen />
       </TestProvider>
     )
-    const mockStore2 = configureStore([])({ calculator: { visible: true } })
-    console.log(mockStore.getState(), 'mock')
-    console.log(
-      mockStore.replaceReducer(() => ({ caculator: { visible: true } })),
-      'mock'
-    )
-    console.log(mockStore.getState(), 'mock after')
-    TestProvider = testProvider(mockStore2)
+    store.changeBool()
+    console.log('HAMMER TIME')
     calculatorScreen.update(
-      <TestProvider>
-        <CalculatorScreen calculator={{ visible: 'perrooo' }} />
+      <TestProvider store={store}>
+        <CalculatorScreen />
       </TestProvider>
     )
-    // calculatorScreen.update(
-    //   <TestProvider>
-    //     <CalculatorScreen hello={'hello'}/>
-    //   </TestProvider>
-    // )
     expect(calculatorScreen.toJSON()).toMatchSnapshot()
   })
 })
