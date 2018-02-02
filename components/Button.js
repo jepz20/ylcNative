@@ -1,7 +1,7 @@
 // @flow
 
 import type { StyleObj } from 'react-native/Libraries/StyleSheet/StyleSheetTypes'
-
+import { renderEl } from '../utils'
 import * as React from 'react'
 import { TouchableHighlight, StyleSheet } from 'react-native'
 type Props = {
@@ -11,16 +11,17 @@ type Props = {
 const Button: React.StatelessFunctionalComponent<Props> = ({
   style,
   children,
-  pedro,
   ...props
 }) => {
+  if (!children) return null
+
   return (
     <TouchableHighlight
       style={[styles.container, style]}
       underlayColor='rgba(0, 0, 0, 0.4)'
       {...props}
     >
-      {children}
+      {renderEl(children)}
     </TouchableHighlight>
   )
 }

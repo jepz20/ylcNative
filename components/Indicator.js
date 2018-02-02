@@ -4,9 +4,11 @@ import * as React from 'react'
 import { View, StyleSheet } from 'react-native'
 
 type Props = {
-  type: 'win' | 'loose' | 'tie' | 'default'
+  type: 'win' | 'loose' | 'tie' | 'neutral'
 }
-const Indicator: React.StatelessFunctionalComponent<Props> = ({ type }) => {
+const Indicator: React.StatelessFunctionalComponent<Props> = ({
+  type = 'neutral'
+}) => {
   return <View style={[styles.indicator, styles[type]]} />
 }
 
@@ -28,7 +30,7 @@ const styles = StyleSheet.create({
   tie: {
     backgroundColor: 'yellow'
   },
-  default: {
+  neutral: {
     backgroundColor: 'grey'
   }
 })

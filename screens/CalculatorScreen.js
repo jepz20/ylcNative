@@ -13,7 +13,11 @@ type Props = {
   reset: Reset
 }
 class CalculatorScreen extends Component<Props> {
-  componentWillUpdate (nextProps) {
+  static defaultProps = {
+    calculator: {}
+  }
+
+  componentWillUpdate (nextProps: Props) {
     if (nextProps.calculator.visible === this.props.calculator.visible) {
       return
     }

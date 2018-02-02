@@ -26,17 +26,16 @@ type Props = {
 const PlayerHistory = ({
   logs,
   playerId,
-  currentDuel,
+  currentDuel = '1',
   toggleCalculatorVisibility
 }: Props) => {
-  const currentLog: ?LogList = logs.get(currentDuel.toString())
+  const currentLog: ?LogList = logs.get(String(currentDuel))
 
   const renderLog = (currentLog: LogList) =>
     currentLog
       .reverse()
       .map(({ operationValue, playerId: logPlayerId, previousPoints, id }) => {
         if (logPlayerId !== playerId) return null
-
         return (
           <View style={[styles.logContainer]} key={id}>
             <Text
@@ -53,10 +52,10 @@ const PlayerHistory = ({
         )
       })
 
-  const renderNoLogs = (chari: string) =>
+  const renderNoLogs = (noLogChar: string) =>
     mapDueslPerMatch(index => (
       <View style={styles.logContainer} key={index}>
-        <Text style={styles.noLog}>{chari}</Text>
+        <Text style={styles.noLog}>{noLogChar}</Text>
       </View>
     ))
 

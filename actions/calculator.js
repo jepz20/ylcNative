@@ -11,11 +11,6 @@ type EraseAction = {
   type: T.ERASE_STR
 }
 
-type SetCurrentPlayerAction = {
-  type: T.SET_CURRENT_PLAYER_STR,
-  payload: { player: string }
-}
-
 type ToggleCalculatorVisibilityAction = {
   type: T.TOGGLE_CALCULATOR_VISIBILITY_STR,
   payload: { player: string | null }
@@ -28,7 +23,6 @@ type ResetAction = {
 export type Action =
   | DigitPressAction
   | EraseAction
-  | SetCurrentPlayerAction
   | ToggleCalculatorVisibilityAction
   | ResetAction
 
@@ -41,12 +35,6 @@ export const digitPress: DigitPress = digit => ({
 export type Erase = () => EraseAction
 export const erase: Erase = () => ({
   type: T.ERASE
-})
-
-export type SetCurrentPlayer = (player: string) => SetCurrentPlayerAction
-export const setCurrentPlayer: SetCurrentPlayer = player => ({
-  type: T.SET_CURRENT_PLAYER,
-  payload: { player }
 })
 
 export type ToggleCalculatorVisibility = (

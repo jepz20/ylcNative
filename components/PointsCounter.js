@@ -11,8 +11,8 @@ const PointsCounter: React.StatelessFunctionalComponent<Props> = ({
   value
 }) => {
   return (
-    <View style={[styles.container]}>
-      <Text style={[styles.text]}>{value}</Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>{value}</Text>
     </View>
   )
 }

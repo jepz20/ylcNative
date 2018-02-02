@@ -12,7 +12,7 @@ export const getDuelResultStatus = (winner: ?string, player: string) => {
     case player:
       return 'win'
     case undefined:
-      return 'default'
+      return 'neutral'
     default:
       return 'loose'
   }

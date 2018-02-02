@@ -1,9 +1,11 @@
 // @flow
 
 import * as T from './types'
+import { getId } from '../utils'
 
 type PlayerPayload = {
-  player: string
+  player: string,
+  logId: string
 }
 
 type PointsPayload = {
@@ -16,7 +18,8 @@ type ScoopMatchAction = {
 }
 
 type DrawAction = {
-  type: T.DRAW_STR
+  type: T.DRAW_STR,
+  payload: { logId: string }
 }
 
 type HalfPointsAction = {
@@ -41,34 +44,42 @@ export type Action =
   | AddPointsAction
   | SubstractPointsAction
 
-export type ScoopMatch = (player: string) => ScoopMatchAction
-export const scoopMatch: ScoopMatch = player => ({
+export type ScoopMatch = (player: string, logId: string) => ScoopMatchAction
+export const scoopMatch: ScoopMatch = (player, logId) => ({
   type: T.SCOOP_MATCH,
-  payload: { player }
+  payload: { player, logId }
 })
 
-export type Draw = () => DrawAction
-export const draw = () => ({
-  type: T.DRAW
+export type Draw = (logId: string) => DrawAction
+export const draw: Draw = logId => ({
+  type: T.DRAW,
+  payload: {
+    logId
+  }
 })
 
-export type HalfPoints = (player: string) => HalfPointsAction
-export const halfPoints: HalfPoints = player => ({
+export type HalfPoints = (player: string, logId: string) => HalfPointsAction
+export const halfPoints: HalfPoints = (player, logId) => ({
   type: T.HALF_POINTS,
-  payload: { player }
+  payload: { player, logId }
 })
 
-export type AddPoints = (points: string, player: string) => AddPointsAction
-export const addPoints: AddPoints = (points, player) => ({
+export type AddPoints = (
+  points: string,
+  player: string,
+  logId: string
+) => AddPointsAction
+export const addPoints: AddPoints = (points, player, logId) => ({
   type: T.ADD_POINTS,
-  payload: { points, player }
+  payload: { points, player, logId }
 })
 
 export type SubstractPoints = (
   points: string,
-  player: string
+  player: string,
+  logId: string
 ) => SubstractPointsAction
-export const substractPoints: SubstractPoints = (points, player) => ({
+export const substractPoints: SubstractPoints = (points, player, logId) => ({
   type: T.SUBSTRACT_POINTS,
-  payload: { points, player }
+  payload: { points, player, logId }
 })

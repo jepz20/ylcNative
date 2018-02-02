@@ -5,6 +5,7 @@ import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native'
 import { PlayerDetail } from '../components'
 import type { PlayerMap, ResultMap } from '../types/match'
 import type { ToggleCalculatorVisibility } from '../actions/calculator'
+import { Map } from 'immutable'
 
 type Props = {
   players: PlayerMap,
@@ -12,14 +13,13 @@ type Props = {
   toggleCalculatorVisibility: ToggleCalculatorVisibility
 }
 const LifePointsContainer = ({
-  players,
+  players = Map(),
   results,
   toggleCalculatorVisibility
 }: Props) => {
   const checkIndexIsEven = n => {
     return n % 2 === 0
   }
-
   return (
     <View style={styles.LifePointsContainerWrapper}>
       {players.valueSeq().map((player, index) => {

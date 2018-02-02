@@ -5,12 +5,15 @@ import { Text, StyleSheet } from 'react-native'
 import { Button } from './Button'
 
 type Props = {
-  size: 'large' | 'small' | 'medium',
-  value: ?string,
-  buttonStyle?: string,
+  size?: 'large' | 'small' | 'medium',
+  value: string,
   onPress: any
 }
-const TextButton = ({ buttonStyle, size, value, ...props }: Props) => {
+const TextButton: React.StatelessFunctionalComponent<Props> = ({
+  size = 'medium',
+  value,
+  ...props
+}) => {
   return (
     <Button {...props}>
       <Text style={[styles.text, styles[size]]}>{value}</Text>
@@ -33,9 +36,5 @@ const styles = StyleSheet.create({
     fontSize: 40
   }
 })
-
-TextButton.defaultProps = {
-  size: 'medium'
-}
 
 export { TextButton }

@@ -5,6 +5,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import { Indicator, PointsCounter } from '../components'
 import { mapDueslPerMatch, getDuelResultStatus } from '../core'
 import type { ResultMap } from '../types/match'
+import { Map } from 'immutable'
 
 const LIFE_POINTS_BACKGROUND = '#006400'
 
@@ -12,30 +13,28 @@ type Props = {
   results: ResultMap,
   id: string,
   name: string,
-  currentPoints: number,
-  outerContainerStyle: any
+  currentPoints: number
+}
+
+const renderResultsIndicator = (results, id) => {
+  const fillresults = (index: string): React.Element<typeof Indicator> => {
+    // $FlowFixMe
+    const winner = results.has(index) ? results.get(index).winner : undefined
+    return <Indicator key={index} type={getDuelResultStatus(winner, id)} />
+  }
+  return mapDueslPerMatch(fillresults)
 }
 
 const PlayerDetail: React.StatelessFunctionalComponent<Props> = ({
-  results,
+  results = Map(),
   id,
   name,
-  currentPoints,
-  outerContainerStyle
+  currentPoints
 }) => {
-  const renderResultsIndicator = () => {
-    const fillresults = (index: string): React.Element<typeof Indicator> => {
-      // $FlowFixMe
-      const winner = results.has(index) ? results.get(index).winner : undefined
-      return <Indicator key={index} type={getDuelResultStatus(winner, id)} />
-    }
-    return mapDueslPerMatch(fillresults)
-  }
-
   return (
-    <View style={[styles.container, outerContainerStyle]}>
+    <View style={styles.container}>
       <View style={styles.resultsContainer}>
-        {!results.isEmpty() && renderResultsIndicator()}
+        {!results.isEmpty() && renderResultsIndicator(results, id)}
       </View>
       <PointsCounter value={currentPoints} />
       <View style={styles.playerNameContainer}>

@@ -14,6 +14,7 @@ import type {
   Draw,
   ScoopMatch
 } from '../actions/match'
+import { getId } from '../utils'
 
 type Props = {
   player: string,
@@ -40,19 +41,19 @@ const OperatorsContainerWithoutRedux = ({
   const applyOperation = (type, player) => {
     switch (type) {
       case 'scoop':
-        scoopMatch(player)
+        scoopMatch(player, getId())
         break
       case 'draw':
-        draw()
+        draw(getId())
         break
       case 'halfPoints':
-        halfPoints(player)
+        halfPoints(player, getId())
         break
       case 'add':
-        addPoints(calculator.value, player)
+        addPoints(calculator.value, player, getId())
         break
       case 'substract':
-        substractPoints(calculator.value, player)
+        substractPoints(calculator.value, player, getId())
         break
     }
     toggleCalculatorVisibility(null)
@@ -65,6 +66,7 @@ const OperatorsContainerWithoutRedux = ({
         <TextButton
           onPress={() => applyOperation('scoop', player)}
           value='SCOOP'
+          name='scoop'
           size='small'
         />
       </View>
@@ -73,11 +75,13 @@ const OperatorsContainerWithoutRedux = ({
           onPress={() => applyOperation('draw', player)}
           value='DRAW'
           size='small'
+          name='draw'
         />
         <TextButton
           onPress={() => applyOperation('halfPoints', player)}
           value='1/2'
           size='small'
+          name='halfPoints'
         />
       </View>
       <View style={[styles.row, { flex: 2 }]}>
@@ -85,11 +89,13 @@ const OperatorsContainerWithoutRedux = ({
           onPress={() => applyOperation('add', player)}
           value='+'
           size='large'
+          name='add'
         />
         <TextButton
           onPress={() => applyOperation('substract', player)}
           value='-'
           size='large'
+          name='substract'
         />
       </View>
     </View>

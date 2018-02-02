@@ -5,7 +5,6 @@ import type { RecordFactory, RecordOf } from 'immutable'
 import {
   DIGIT_PRESS,
   ERASE,
-  SET_CURRENT_PLAYER,
   TOGGLE_CALCULATOR_VISIBILITY,
   RESET_CALCULATOR_VALUE
 } from '../actions/types'
@@ -16,6 +15,7 @@ import {
   CALCULATOR_DEFAULT_VALUE
 } from '../constants'
 
+import { parsePoints } from '../utils'
 export type State = {
   value: string,
   currentPlayer: string | null,
@@ -24,7 +24,7 @@ export type State = {
 
 export type StateRE = RecordOf<State>
 
-const INITIAL_STATE: RecordFactory<State> = Record({
+export const INITIAL_STATE: RecordFactory<State> = Record({
   value: CALCULATOR_DEFAULT_VALUE,
   currentPlayer: null,
   visible: false
@@ -32,6 +32,9 @@ const INITIAL_STATE: RecordFactory<State> = Record({
 
 const getCalculatedValue = (currentValue: string, digit: string): string => {
   if (currentValue === CALCULATOR_DEFAULT_VALUE) {
+    if (parsePoints(digit) === parsePoints(CALCULATOR_DEFAULT_VALUE)) {
+      return CALCULATOR_DEFAULT_VALUE
+    }
     return digit
   }
 
@@ -47,11 +50,7 @@ const getCalculatedValue = (currentValue: string, digit: string): string => {
   let diff = newValue.length - COMMON_VALUE_LENGTH
   if (diff > 0 && digit.length > 1) {
     // put as much digits as necessary to have the common value length
-    newValue = `${currentValue}${digit.slice(0, -diff) || 0}`
-  }
-
-  if (newValue.length > MAX_VALUE_LENGTH) {
-    newValue = newValue.slice(0, MAX_VALUE_LENGTH)
+    newValue = `${currentValue}${digit.slice(0, -diff)}`
   }
 
   return newValue
@@ -78,9 +77,6 @@ export default function (
         visible: !state.visible,
         currentPlayer: action.payload.player
       })
-    case SET_CURRENT_PLAYER: {
-      return state.merge({ currentPlayer: action.payload.player })
-    }
     case RESET_CALCULATOR_VALUE: {
       return state.merge({ value: CALCULATOR_DEFAULT_VALUE })
     }
