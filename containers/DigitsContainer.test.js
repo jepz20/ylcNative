@@ -1,34 +1,16 @@
 import React from 'react'
 import 'react-native'
-import PropTypes from 'prop-types'
-import configureStore from 'redux-mock-store'
 import renderer from 'react-test-renderer'
 import { TextButton, IconButton } from '../components'
 import { DigitsContainer } from './DigitsContainer'
-
-function testProvider () {
-  class TestProvider extends React.Component {
-    getChildContext () {
-      return { store: configureStore()([]) }
-    }
-
-    render () {
-      return this.props.children
-    }
-  }
-
-  TestProvider.childContextTypes = {
-    store: PropTypes.object
-  }
-  return TestProvider
-}
+import { TestProvider, mockStore } from '../setupTests'
 
 describe('DigitsContainer', () => {
   test('renders with no props', () => {
-    const TestProvider = testProvider()
+    const store = mockStore()
     const controllersContainer = renderer
       .create(
-        <TestProvider>
+        <TestProvider store={store}>
           <DigitsContainer />
         </TestProvider>
       )
@@ -37,10 +19,10 @@ describe('DigitsContainer', () => {
   })
 
   test('renders with value 2', () => {
-    const TestProvider = testProvider()
+    const store = mockStore()
     const controllersContainer = renderer
       .create(
-        <TestProvider>
+        <TestProvider store={store}>
           <DigitsContainer value='2' />
         </TestProvider>
       )
@@ -49,10 +31,10 @@ describe('DigitsContainer', () => {
   })
 
   test('press a digit', () => {
-    const TestProvider = testProvider()
+    const store = mockStore()
     const digitPress = jest.fn()
     const digitsContainer = renderer.create(
-      <TestProvider>
+      <TestProvider store={store}>
         <DigitsContainer value='2' digitPress={digitPress} />
       </TestProvider>
     ).root
@@ -61,10 +43,10 @@ describe('DigitsContainer', () => {
   })
 
   test('reset a digit', () => {
-    const TestProvider = testProvider()
+    const store = mockStore()
     const erase = jest.fn()
     const digitsContainer = renderer.create(
-      <TestProvider>
+      <TestProvider store={store}>
         <DigitsContainer value='2' erase={erase} />
       </TestProvider>
     ).root
@@ -73,10 +55,10 @@ describe('DigitsContainer', () => {
   })
 
   test('reset calculator', () => {
-    const TestProvider = testProvider()
+    const store = mockStore()
     const reset = jest.fn()
     const digitsContainer = renderer.create(
-      <TestProvider>
+      <TestProvider store={store}>
         <DigitsContainer value='2' reset={reset} />
       </TestProvider>
     ).root

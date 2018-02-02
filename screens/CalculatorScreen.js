@@ -12,14 +12,12 @@ type Props = {
   erase: Erase,
   reset: Reset
 }
-export class CalculatorScreen extends Component<Props> {
+class CalculatorScreen extends Component<Props> {
   static defaultProps = {
     calculator: {}
   }
 
   componentWillUpdate (nextProps: Props) {
-    console.log('UPDATED', nextProps.calculator, this.props.calculator)
-
     if (nextProps.calculator.visible === this.props.calculator.visible) {
       return
     }

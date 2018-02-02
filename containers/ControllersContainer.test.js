@@ -1,34 +1,15 @@
 import React from 'react'
-import 'react-native'
-import PropTypes from 'prop-types'
-import configureStore from 'redux-mock-store'
+import { TouchableWithoutFeedback } from 'react-native'
 import renderer from 'react-test-renderer'
-
+import { TestProvider, mockStore } from '../setupTests.js'
 import { ControllersContainer } from './ControllersContainer'
-
-function testProvider () {
-  class TestProvider extends React.Component {
-    getChildContext () {
-      return { store: configureStore()([]) }
-    }
-
-    render () {
-      return this.props.children
-    }
-  }
-
-  TestProvider.childContextTypes = {
-    store: PropTypes.object
-  }
-  return TestProvider
-}
 
 describe('ControllersContainer', () => {
   test('renders with no props', () => {
-    const TestProvider = testProvider()
+    const store = mockStore()
     const controllersContainer = renderer
       .create(
-        <TestProvider>
+        <TestProvider store={store}>
           <ControllersContainer />
         </TestProvider>
       )
@@ -37,14 +18,12 @@ describe('ControllersContainer', () => {
   })
 
   test('renders player 1', () => {
-    const TestProvider = testProvider()
-    const toggle = jest.fn()
+    const store = mockStore()
     const controllersContainer = renderer
       .create(
-        <TestProvider>
+        <TestProvider store={store}>
           <ControllersContainer
             player={'1'}
-            toggleCalculatorVisibility={toggle}
           />
         </TestProvider>
       )
@@ -52,18 +31,31 @@ describe('ControllersContainer', () => {
     expect(controllersContainer).toMatchSnapshot()
   })
   test('renders player 2', () => {
-    const TestProvider = testProvider()
-    const toggle = jest.fn()
+    const store = mockStore()
     const controllersContainer = renderer
       .create(
-        <TestProvider>
+        <TestProvider store={store}>
           <ControllersContainer
             player={'2'}
-            toggleCalculatorVisibility={toggle}
           />
         </TestProvider>
       )
       .toJSON()
     expect(controllersContainer).toMatchSnapshot()
+  })
+
+  test('to toggle visiblity', () => {
+    const store = mockStore()
+    const controllersContainer = renderer
+      .create(
+        <TestProvider store={store}>
+          <ControllersContainer
+            player={'2'}
+          />
+        </TestProvider>
+      ).root
+    const touchable = controllersContainer.findByType(TouchableWithoutFeedback)
+    touchable.props.onPress()
+    expect(store.getActions()).toMatchSnapshot()
   })
 })

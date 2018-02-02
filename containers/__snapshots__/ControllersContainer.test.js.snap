@@ -1070,3 +1070,14 @@ exports[`ControllersContainer renders with no props 1`] = `
   </View>
 </View>
 `;
+
+exports[`ControllersContainer to toggle visiblity 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "player": undefined,
+    },
+    "type": "@toggle_calculator_visibility",
+  },
+]
+`;

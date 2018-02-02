@@ -7,37 +7,6 @@ Array [
       "logId": 1,
       "player": "1",
     },
-    "type": "@match/scoop_match",
-  },
-  Object {
-    "payload": Object {
-      "player": null,
-    },
-    "type": "@toggle_calculator_visibility",
-  },
-  Object {
-    "type": "@rest_calculator_value",
-  },
-  Object {
-    "payload": Object {
-      "logId": 1,
-    },
-    "type": "@draw",
-  },
-  Object {
-    "payload": Object {
-      "player": null,
-    },
-    "type": "@toggle_calculator_visibility",
-  },
-  Object {
-    "type": "@rest_calculator_value",
-  },
-  Object {
-    "payload": Object {
-      "logId": 1,
-      "player": "1",
-    },
     "type": "@match/half_points",
   },
   Object {
@@ -54,53 +23,6 @@ Array [
 
 exports[`OperatorsContainer adds points to a player 1`] = `
 Array [
-  Object {
-    "payload": Object {
-      "logId": 1,
-      "player": "1",
-    },
-    "type": "@match/scoop_match",
-  },
-  Object {
-    "payload": Object {
-      "player": null,
-    },
-    "type": "@toggle_calculator_visibility",
-  },
-  Object {
-    "type": "@rest_calculator_value",
-  },
-  Object {
-    "payload": Object {
-      "logId": 1,
-    },
-    "type": "@draw",
-  },
-  Object {
-    "payload": Object {
-      "player": null,
-    },
-    "type": "@toggle_calculator_visibility",
-  },
-  Object {
-    "type": "@rest_calculator_value",
-  },
-  Object {
-    "payload": Object {
-      "logId": 1,
-      "player": "1",
-    },
-    "type": "@match/half_points",
-  },
-  Object {
-    "payload": Object {
-      "player": null,
-    },
-    "type": "@toggle_calculator_visibility",
-  },
-  Object {
-    "type": "@rest_calculator_value",
-  },
   Object {
     "payload": Object {
       "logId": 1,
@@ -123,22 +45,6 @@ Array [
 
 exports[`OperatorsContainer draws a duel 1`] = `
 Array [
-  Object {
-    "payload": Object {
-      "logId": 1,
-      "player": "1",
-    },
-    "type": "@match/scoop_match",
-  },
-  Object {
-    "payload": Object {
-      "player": null,
-    },
-    "type": "@toggle_calculator_visibility",
-  },
-  Object {
-    "type": "@rest_calculator_value",
-  },
   Object {
     "payload": Object {
       "logId": 1,
@@ -806,70 +712,6 @@ Array [
 
 exports[`OperatorsContainer substract points to a player 1`] = `
 Array [
-  Object {
-    "payload": Object {
-      "logId": 1,
-      "player": "1",
-    },
-    "type": "@match/scoop_match",
-  },
-  Object {
-    "payload": Object {
-      "player": null,
-    },
-    "type": "@toggle_calculator_visibility",
-  },
-  Object {
-    "type": "@rest_calculator_value",
-  },
-  Object {
-    "payload": Object {
-      "logId": 1,
-    },
-    "type": "@draw",
-  },
-  Object {
-    "payload": Object {
-      "player": null,
-    },
-    "type": "@toggle_calculator_visibility",
-  },
-  Object {
-    "type": "@rest_calculator_value",
-  },
-  Object {
-    "payload": Object {
-      "logId": 1,
-      "player": "1",
-    },
-    "type": "@match/half_points",
-  },
-  Object {
-    "payload": Object {
-      "player": null,
-    },
-    "type": "@toggle_calculator_visibility",
-  },
-  Object {
-    "type": "@rest_calculator_value",
-  },
-  Object {
-    "payload": Object {
-      "logId": 1,
-      "player": "1",
-      "points": "100",
-    },
-    "type": "@match/add_points",
-  },
-  Object {
-    "payload": Object {
-      "player": null,
-    },
-    "type": "@toggle_calculator_visibility",
-  },
-  Object {
-    "type": "@rest_calculator_value",
-  },
   Object {
     "payload": Object {
       "logId": 1,
