@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PointsCounter renders with a value  1`] = `
+exports[`PointsCounter renders with a value of 2 digits 1`] = `
 <View
   style={
     Object {
@@ -15,14 +15,83 @@ exports[`PointsCounter renders with a value  1`] = `
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
-      Object {
-        "color": "#fff",
-        "fontSize": 65,
-        "fontWeight": "bold",
-      }
+      Array [
+        Object {
+          "color": "#fff",
+          "fontSize": 65,
+          "fontWeight": "bold",
+        },
+        Object {
+          "fontSize": 80,
+        },
+      ]
     }
   >
     20
+  </Text>
+</View>
+`;
+
+exports[`PointsCounter renders with a value of 4 digits 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#fff",
+          "fontSize": 65,
+          "fontWeight": "bold",
+        },
+        Object {
+          "fontSize": 65,
+        },
+      ]
+    }
+  >
+    8000
+  </Text>
+</View>
+`;
+
+exports[`PointsCounter renders with a value of 5 digits 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Array [
+        Object {
+          "color": "#fff",
+          "fontSize": 65,
+          "fontWeight": "bold",
+        },
+        Object {
+          "fontSize": 50,
+        },
+      ]
+    }
+  >
+    80000
   </Text>
 </View>
 `;
@@ -42,11 +111,16 @@ exports[`PointsCounter renders with no props  1`] = `
     allowFontScaling={true}
     ellipsizeMode="tail"
     style={
-      Object {
-        "color": "#fff",
-        "fontSize": 65,
-        "fontWeight": "bold",
-      }
+      Array [
+        Object {
+          "color": "#fff",
+          "fontSize": 65,
+          "fontWeight": "bold",
+        },
+        Object {
+          "fontSize": 65,
+        },
+      ]
     }
   />
 </View>

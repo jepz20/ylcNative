@@ -5,7 +5,6 @@ import MainScreen from './MainScreen'
 import { INITIAL_STATE } from '../reducers/match'
 
 jest.mock('LayoutAnimation', () => {
-  // console.log('LAYOUTANIMATION')
   return {
     easeInEaseOut: jest.fn()
   }

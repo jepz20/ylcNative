@@ -117,11 +117,16 @@ exports[`LifePointsContainer renders with 1 player 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#fff",
-              "fontSize": 65,
-              "fontWeight": "bold",
-            }
+            Array [
+              Object {
+                "color": "#fff",
+                "fontSize": 65,
+                "fontWeight": "bold",
+              },
+              Object {
+                "fontSize": 65,
+              },
+            ]
           }
         >
           8000
@@ -274,11 +279,16 @@ exports[`LifePointsContainer renders with 2 players 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#fff",
-              "fontSize": 65,
-              "fontWeight": "bold",
-            }
+            Array [
+              Object {
+                "color": "#fff",
+                "fontSize": 65,
+                "fontWeight": "bold",
+              },
+              Object {
+                "fontSize": 65,
+              },
+            ]
           }
         >
           8000
@@ -418,11 +428,16 @@ exports[`LifePointsContainer renders with 2 players 1`] = `
           allowFontScaling={true}
           ellipsizeMode="tail"
           style={
-            Object {
-              "color": "#fff",
-              "fontSize": 65,
-              "fontWeight": "bold",
-            }
+            Array [
+              Object {
+                "color": "#fff",
+                "fontSize": 65,
+                "fontWeight": "bold",
+              },
+              Object {
+                "fontSize": 65,
+              },
+            ]
           }
         >
           8000

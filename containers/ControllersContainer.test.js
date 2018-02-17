@@ -22,9 +22,7 @@ describe('ControllersContainer', () => {
     const controllersContainer = renderer
       .create(
         <TestProvider store={store}>
-          <ControllersContainer
-            player={'1'}
-          />
+          <ControllersContainer player={'1'} />
         </TestProvider>
       )
       .toJSON()
@@ -35,9 +33,7 @@ describe('ControllersContainer', () => {
     const controllersContainer = renderer
       .create(
         <TestProvider store={store}>
-          <ControllersContainer
-            player={'2'}
-          />
+          <ControllersContainer player={'2'} />
         </TestProvider>
       )
       .toJSON()
@@ -46,14 +42,11 @@ describe('ControllersContainer', () => {
 
   test('to toggle visiblity', () => {
     const store = mockStore()
-    const controllersContainer = renderer
-      .create(
-        <TestProvider store={store}>
-          <ControllersContainer
-            player={'2'}
-          />
-        </TestProvider>
-      ).root
+    const controllersContainer = renderer.create(
+      <TestProvider store={store}>
+        <ControllersContainer player={'2'} />
+      </TestProvider>
+    ).root
     const touchable = controllersContainer.findByType(TouchableWithoutFeedback)
     touchable.props.onPress()
     expect(store.getActions()).toMatchSnapshot()

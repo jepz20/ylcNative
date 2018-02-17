@@ -6,12 +6,9 @@ import sinon from 'sinon'
 import { TestProvider, mockStore } from '../setupTests'
 import CalculatorScreen from './CalculatorScreen'
 
-jest.mock('LayoutAnimation', () => {
-  // console.log('LAYOUTANIMATION')
-  return {
-    easeInEaseOut: jest.fn()
-  }
-})
+jest.mock('LayoutAnimation', () => ({
+  easeInEaseOut: jest.fn()
+}))
 
 describe('CalculatorScreen', () => {
   test('renders as connected component when not visible', () => {
@@ -40,9 +37,11 @@ describe('CalculatorScreen', () => {
 
   test('animation is applied when changing visiblity', () => {
     const calculatorScreen = shallow(
-      <CalculatorScreen.WrappedComponent calculator={{visible: true}} />
+      <CalculatorScreen.WrappedComponent calculator={{ visible: true }} />
     )
-    calculatorScreen.setProps({ calculator: { currentPlayer: 1, visible: true } })
+    calculatorScreen.setProps({
+      calculator: { currentPlayer: 1, visible: true }
+    })
     const easeInEaseOutSpy = sinon.spy(LayoutAnimation, 'easeInEaseOut')
     expect(easeInEaseOutSpy.calledOnce).toBe(false)
     calculatorScreen.setProps({ calculator: { visible: false } })
