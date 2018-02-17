@@ -18,22 +18,24 @@ describe('OperatorsContainer', () => {
 
   test('renders with no props', () => {
     const store = mockStore({ calculator: CalculatorRE() })
-    const operatorsContainer = renderer.create(
-      <TestProvider store={store}>
-        <OperatorsContainer />
-      </TestProvider>
-    )
+    const operatorsContainer = renderer
+      .create(
+        <TestProvider store={store}>
+          <OperatorsContainer />
+        </TestProvider>
+      )
       .toJSON()
     expect(operatorsContainer).toMatchSnapshot()
   })
 
   test('renders correctly', () => {
     const store = mockStore({ calculator: CalculatorRE() })
-    const operatorsContainer = renderer.create(
-      <TestProvider store={store}>
-        <OperatorsContainer player='1' />
-      </TestProvider>
-    )
+    const operatorsContainer = renderer
+      .create(
+        <TestProvider store={store}>
+          <OperatorsContainer player='1' />
+        </TestProvider>
+      )
       .toJSON()
     expect(operatorsContainer).toMatchSnapshot()
   })

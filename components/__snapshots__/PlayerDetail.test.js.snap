@@ -35,11 +35,16 @@ exports[`PlayerDetail renders with no props  1`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "#fff",
-          "fontSize": 65,
-          "fontWeight": "bold",
-        }
+        Array [
+          Object {
+            "color": "#fff",
+            "fontSize": 65,
+            "fontWeight": "bold",
+          },
+          Object {
+            "fontSize": 65,
+          },
+        ]
       }
     />
   </View>
@@ -104,11 +109,16 @@ exports[`PlayerDetail renders with players detail and no results  1`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "#fff",
-          "fontSize": 65,
-          "fontWeight": "bold",
-        }
+        Array [
+          Object {
+            "color": "#fff",
+            "fontSize": 65,
+            "fontWeight": "bold",
+          },
+          Object {
+            "fontSize": 65,
+          },
+        ]
       }
     >
       8000
@@ -229,11 +239,16 @@ exports[`PlayerDetail renders with players detail results  1`] = `
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "#fff",
-          "fontSize": 65,
-          "fontWeight": "bold",
-        }
+        Array [
+          Object {
+            "color": "#fff",
+            "fontSize": 65,
+            "fontWeight": "bold",
+          },
+          Object {
+            "fontSize": 65,
+          },
+        ]
       }
     >
       8000
@@ -354,11 +369,16 @@ exports[`PlayerDetail renders with players detail results when there is only one
       allowFontScaling={true}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "#fff",
-          "fontSize": 65,
-          "fontWeight": "bold",
-        }
+        Array [
+          Object {
+            "color": "#fff",
+            "fontSize": 65,
+            "fontWeight": "bold",
+          },
+          Object {
+            "fontSize": 65,
+          },
+        ]
       }
     >
       8000

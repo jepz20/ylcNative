@@ -89,11 +89,16 @@ exports[`renders without crashing when setLayoutAnimationEnabledExperimental doe
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
-                  Object {
-                    "color": "#fff",
-                    "fontSize": 65,
-                    "fontWeight": "bold",
-                  }
+                  Array [
+                    Object {
+                      "color": "#fff",
+                      "fontSize": 65,
+                      "fontWeight": "bold",
+                    },
+                    Object {
+                      "fontSize": 65,
+                    },
+                  ]
                 }
               >
                 8000
@@ -181,11 +186,16 @@ exports[`renders without crashing when setLayoutAnimationEnabledExperimental doe
                 allowFontScaling={true}
                 ellipsizeMode="tail"
                 style={
-                  Object {
-                    "color": "#fff",
-                    "fontSize": 65,
-                    "fontWeight": "bold",
-                  }
+                  Array [
+                    Object {
+                      "color": "#fff",
+                      "fontSize": 65,
+                      "fontWeight": "bold",
+                    },
+                    Object {
+                      "fontSize": 65,
+                    },
+                  ]
                 }
               >
                 8000

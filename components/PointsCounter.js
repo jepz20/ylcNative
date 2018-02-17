@@ -2,19 +2,40 @@
 
 import * as React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import counter from '../utils/counter'
 
 type Props = {
   value: number
 }
 
-const PointsCounter: React.StatelessFunctionalComponent<Props> = ({
-  value
-}) => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{value}</Text>
-    </View>
-  )
+type State = {
+  value: number
+}
+
+class PointsCounter extends React.Component<Props, State> {
+  state = {
+    value: this.props.value
+  }
+
+  setValue = (val: number) => {
+    this.setState({ value: val })
+  }
+
+  componentWillReceiveProps ({ value: finalValue } : Props) {
+    const { value: initialValue }: Props = this.props
+    if (finalValue === initialValue) return
+    counter({ finalValue, initialValue, setValue: this.setValue, duration: 1.5 })
+  }
+
+  render () {
+    const { value } = this.state
+    const fontSize = value < 999 ? 80 : (value > 9999 ? 50 : 65)
+    return (
+      <View style={styles.container}>
+        <Text style={[styles.text, { fontSize }]}>{value}</Text>
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
