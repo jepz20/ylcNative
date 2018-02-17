@@ -12,6 +12,7 @@ type State = {
   value: number
 }
 
+const DEFAULT_LENGTH = 4
 class PointsCounter extends React.Component<Props, State> {
   state = {
     value: this.props.value
@@ -28,8 +29,9 @@ class PointsCounter extends React.Component<Props, State> {
   }
 
   render () {
-    const { value } = this.state
-    const fontSize = value < 999 ? 80 : (value > 9999 ? 50 : 65)
+    const { value = '' } = this.state
+    const len = value.toString().length
+    const fontSize = 65 + (DEFAULT_LENGTH - len) * 15
     return (
       <View style={styles.container}>
         <Text style={[styles.text, { fontSize }]}>{value}</Text>

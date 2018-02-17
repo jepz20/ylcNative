@@ -22,7 +22,7 @@ exports[`PointsCounter renders with a value of 2 digits 1`] = `
           "fontWeight": "bold",
         },
         Object {
-          "fontSize": 80,
+          "fontSize": 95,
         },
       ]
     }
@@ -118,10 +118,12 @@ exports[`PointsCounter renders with no props  1`] = `
           "fontWeight": "bold",
         },
         Object {
-          "fontSize": 65,
+          "fontSize": 125,
         },
       ]
     }
-  />
+  >
+    
+  </Text>
 </View>
 `;

@@ -42,11 +42,13 @@ exports[`PlayerDetail renders with no props  1`] = `
             "fontWeight": "bold",
           },
           Object {
-            "fontSize": 65,
+            "fontSize": 125,
           },
         ]
       }
-    />
+    >
+      
+    </Text>
   </View>
   <View
     style={
