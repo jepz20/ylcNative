@@ -41,12 +41,14 @@ export default ({
   }
 
   let lastFrame
-  const skip = calculateSkip(finalValue,
+  const skip = calculateSkip(
+    finalValue,
     initialValue,
     duration,
-    framesPerSecond)
+    framesPerSecond
+  )
 
-  const hasEnded = (frameVal) => {
+  const hasEnded = frameVal => {
     if (finalValue >= initialValue && frameVal >= finalValue) return true
     if (finalValue <= initialValue && frameVal <= finalValue) return true
     return false
