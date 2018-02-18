@@ -22,10 +22,15 @@ class PointsCounter extends React.Component<Props, State> {
     this.setState({ value: val })
   }
 
-  componentWillReceiveProps ({ value: finalValue } : Props) {
+  componentWillReceiveProps ({ value: finalValue }: Props) {
     const { value: initialValue }: Props = this.props
     if (finalValue === initialValue) return
-    counter({ finalValue, initialValue, setValue: this.setValue, duration: 1.5 })
+    counter({
+      finalValue,
+      initialValue,
+      setValue: this.setValue,
+      duration: 1.5
+    })
   }
 
   render () {
