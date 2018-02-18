@@ -7,7 +7,7 @@
     "enzyme": "^3.3.0",
     "eslint-plugin-flowtype": "^2.40.1",
     "flow-bin": "0.56.0",
-    "husky": "^0.14.3",
+    "husky": "0.15.0-rc.8",
     "jest-expo": "^22.0.0",
     "lint-staged": "^6.0.0",
     "prettier": "^1.9.2",
@@ -22,22 +22,22 @@
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "precommit": "lint-staged",
     "start": "react-native-scripts start",
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "node node_modules/jest/bin/jest.js --watch",
-    "test:coverage": "node node_modules/jest/bin/jest.js --coverage",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "lint": "standard '**/*.js' | snazzy",
-    "format": "prettier-standard '**/*.{js,jsx}'",
+    "format": "prettier-standard '**/*.js'",
     "flow": "flow"
   },
   "jest": {
     "preset": "jest-expo",
     "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js",
     "collectCoverageFrom": [
-      "**/*.{js,jsx}",
+      "**/*.js",
       "!**/node_modules/**",
       "!coverage/**",
       "!setupTests.js"
@@ -70,10 +70,15 @@
   },
   "lint-staged": {
     "linters": {
-      "**/*.js": [
+      "*.js": [
         "prettier-standard",
         "git add"
       ]
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run test"
     }
   }
 }
