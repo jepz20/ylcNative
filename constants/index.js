@@ -16,3 +16,5 @@ export const NO_LOG_CHARACTER = '.'
 export const DEFAULT_POINTS: number = 8000
 export const PLAYER_1_NAME: string = 'Jose'
 export const PLAYER_2_NAME: string = 'Eduardo'
+
+export const MAX_NAME_LENGTH = 15

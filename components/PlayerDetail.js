@@ -1,10 +1,11 @@
 // @flow
 
 import * as React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, TextInput, StyleSheet } from 'react-native'
 import { Indicator, PointsCounter } from '../components'
 import { mapDueslPerMatch, getDuelResultStatus } from '../core'
 import type { ResultMap } from '../types/match'
+import type { ChangePlayerName } from '../actions/match'
 import { Map } from 'immutable'
 
 const LIFE_POINTS_BACKGROUND = '#006400'
@@ -13,7 +14,8 @@ type Props = {
   results: ResultMap,
   id: string,
   name: string,
-  currentPoints: number
+  currentPoints: number,
+  changePlayerName: ChangePlayerName
 }
 
 const renderResultsIndicator = (results, id) => {
@@ -29,7 +31,8 @@ const PlayerDetail: React.StatelessFunctionalComponent<Props> = ({
   results = Map(),
   id,
   name,
-  currentPoints
+  currentPoints,
+  changePlayerName
 }) => {
   return (
     <View style={styles.container}>
@@ -38,7 +41,12 @@ const PlayerDetail: React.StatelessFunctionalComponent<Props> = ({
       </View>
       <PointsCounter value={currentPoints} />
       <View style={styles.playerNameContainer}>
-        <Text style={styles.playerNameText}>{name}</Text>
+        <TextInput
+          underlineColorAndroid='transparent'
+          style={styles.playerNameText}
+          onChangeText={ev => changePlayerName(ev, id)}
+          value={name}
+        />
       </View>
     </View>
   )
@@ -66,7 +74,8 @@ const styles = StyleSheet.create({
   playerNameText: {
     fontSize: 17,
     fontWeight: 'bold',
-    color: '#fff'
+    color: '#fff',
+    borderBottomWidth: 0
   }
 })
 

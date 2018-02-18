@@ -5,17 +5,20 @@ import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native'
 import { PlayerDetail } from '../components'
 import type { PlayerMap, ResultMap } from '../types/match'
 import type { ToggleCalculatorVisibility } from '../actions/calculator'
+import type { ChangePlayerName } from '../actions/match'
 import { Map } from 'immutable'
 
 type Props = {
   players: PlayerMap,
   results: ResultMap,
-  toggleCalculatorVisibility: ToggleCalculatorVisibility
+  toggleCalculatorVisibility: ToggleCalculatorVisibility,
+  changePlayerName: ChangePlayerName
 }
 const LifePointsContainer = ({
   players = Map(),
   results,
-  toggleCalculatorVisibility
+  toggleCalculatorVisibility,
+  changePlayerName
 }: Props) => {
   const checkIndexIsEven = n => {
     return n % 2 === 0
@@ -36,6 +39,7 @@ const LifePointsContainer = ({
                 name={player.name}
                 currentPoints={player.currentPoints}
                 id={player.id}
+                changePlayerName={changePlayerName}
               />
             </View>
           </TouchableWithoutFeedback>

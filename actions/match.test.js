@@ -43,4 +43,7 @@ describe('Match Actions', () => {
       }
     })
   })
+  test('substractPoints', () => {
+    expect(A.changePlayerName('test', '2')).toMatchSnapshot()
+  })
 })

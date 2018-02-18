@@ -114,20 +114,20 @@ exports[`renders without crashing when setLayoutAnimationEnabledExperimental doe
                 }
               }
             >
-              <Text
-                accessible={true}
+              <TextInput
                 allowFontScaling={true}
-                ellipsizeMode="tail"
+                onChangeText={[Function]}
                 style={
                   Object {
+                    "borderBottomWidth": 0,
                     "color": "#fff",
                     "fontSize": 17,
                     "fontWeight": "bold",
                   }
                 }
-              >
-                Jose
-              </Text>
+                underlineColorAndroid="transparent"
+                value="Jose"
+              />
             </View>
           </View>
         </View>
@@ -211,20 +211,20 @@ exports[`renders without crashing when setLayoutAnimationEnabledExperimental doe
                 }
               }
             >
-              <Text
-                accessible={true}
+              <TextInput
                 allowFontScaling={true}
-                ellipsizeMode="tail"
+                onChangeText={[Function]}
                 style={
                   Object {
+                    "borderBottomWidth": 0,
                     "color": "#fff",
                     "fontSize": 17,
                     "fontWeight": "bold",
                   }
                 }
-              >
-                Eduardo
-              </Text>
+                underlineColorAndroid="transparent"
+                value="Eduardo"
+              />
             </View>
           </View>
         </View>
