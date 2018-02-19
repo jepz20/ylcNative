@@ -142,20 +142,20 @@ exports[`LifePointsContainer renders with 1 player 1`] = `
           }
         }
       >
-        <Text
-          accessible={true}
+        <TextInput
           allowFontScaling={true}
-          ellipsizeMode="tail"
+          onChangeText={[Function]}
           style={
             Object {
+              "borderBottomWidth": 0,
               "color": "#fff",
               "fontSize": 17,
               "fontWeight": "bold",
             }
           }
-        >
-          test 1
-        </Text>
+          underlineColorAndroid="transparent"
+          value="test 1"
+        />
       </View>
     </View>
   </View>
@@ -304,20 +304,20 @@ exports[`LifePointsContainer renders with 2 players 1`] = `
           }
         }
       >
-        <Text
-          accessible={true}
+        <TextInput
           allowFontScaling={true}
-          ellipsizeMode="tail"
+          onChangeText={[Function]}
           style={
             Object {
+              "borderBottomWidth": 0,
               "color": "#fff",
               "fontSize": 17,
               "fontWeight": "bold",
             }
           }
-        >
-          test 1
-        </Text>
+          underlineColorAndroid="transparent"
+          value="test 1"
+        />
       </View>
     </View>
   </View>
@@ -453,20 +453,20 @@ exports[`LifePointsContainer renders with 2 players 1`] = `
           }
         }
       >
-        <Text
-          accessible={true}
+        <TextInput
           allowFontScaling={true}
-          ellipsizeMode="tail"
+          onChangeText={[Function]}
           style={
             Object {
+              "borderBottomWidth": 0,
               "color": "#fff",
               "fontSize": 17,
               "fontWeight": "bold",
             }
           }
-        >
-          test 2
-        </Text>
+          underlineColorAndroid="transparent"
+          value="test 2"
+        />
       </View>
     </View>
   </View>

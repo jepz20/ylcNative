@@ -1,5 +1,6 @@
 import React from 'react'
 import 'react-native'
+import { shallow } from 'enzyme'
 import { Map, Record } from 'immutable'
 import renderer from 'react-test-renderer'
 
@@ -54,5 +55,23 @@ describe('PlayerDetail', () => {
       )
       .toJSON()
     expect(playerDetail).toMatchSnapshot()
+  })
+
+  test('onchangetext calls change name', () => {
+    const changePlayerName = jest.fn()
+    const results = Map({
+      '1': result({ winner: '1' })
+    })
+    const playerDetail = shallow(
+      <PlayerDetail
+        results={results}
+        id={'1'}
+        name='Jose'
+        currentPoints={8000}
+        changePlayerName={changePlayerName}
+      />
+    )
+    playerDetail.instance().onChangeText()
+    expect(changePlayerName).toBeCalled()
   })
 })

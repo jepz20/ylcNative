@@ -60,17 +60,19 @@ exports[`PlayerDetail renders with no props  1`] = `
       }
     }
   >
-    <Text
-      accessible={true}
+    <TextInput
       allowFontScaling={true}
-      ellipsizeMode="tail"
+      onChangeText={[Function]}
       style={
         Object {
+          "borderBottomWidth": 0,
           "color": "#fff",
           "fontSize": 17,
           "fontWeight": "bold",
         }
       }
+      underlineColorAndroid="transparent"
+      value={undefined}
     />
   </View>
 </View>
@@ -136,20 +138,20 @@ exports[`PlayerDetail renders with players detail and no results  1`] = `
       }
     }
   >
-    <Text
-      accessible={true}
+    <TextInput
       allowFontScaling={true}
-      ellipsizeMode="tail"
+      onChangeText={[Function]}
       style={
         Object {
+          "borderBottomWidth": 0,
           "color": "#fff",
           "fontSize": 17,
           "fontWeight": "bold",
         }
       }
-    >
-      Jose
-    </Text>
+      underlineColorAndroid="transparent"
+      value="Jose"
+    />
   </View>
 </View>
 `;
@@ -266,20 +268,20 @@ exports[`PlayerDetail renders with players detail results  1`] = `
       }
     }
   >
-    <Text
-      accessible={true}
+    <TextInput
       allowFontScaling={true}
-      ellipsizeMode="tail"
+      onChangeText={[Function]}
       style={
         Object {
+          "borderBottomWidth": 0,
           "color": "#fff",
           "fontSize": 17,
           "fontWeight": "bold",
         }
       }
-    >
-      Jose
-    </Text>
+      underlineColorAndroid="transparent"
+      value="Jose"
+    />
   </View>
 </View>
 `;
@@ -396,20 +398,20 @@ exports[`PlayerDetail renders with players detail results when there is only one
       }
     }
   >
-    <Text
-      accessible={true}
+    <TextInput
       allowFontScaling={true}
-      ellipsizeMode="tail"
+      onChangeText={[Function]}
       style={
         Object {
+          "borderBottomWidth": 0,
           "color": "#fff",
           "fontSize": 17,
           "fontWeight": "bold",
         }
       }
-    >
-      Jose
-    </Text>
+      underlineColorAndroid="transparent"
+      value="Jose"
+    />
   </View>
 </View>
 `;

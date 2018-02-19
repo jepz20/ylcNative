@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Match Actions substractPoints 1`] = `
+Object {
+  "payload": Object {
+    "name": "test",
+    "player": "2",
+  },
+  "type": "@change_player_name",
+}
+`;

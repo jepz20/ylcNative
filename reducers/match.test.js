@@ -6,6 +6,7 @@ import match, {
 } from './match'
 import * as T from '../actions/types'
 import { Map, List } from 'immutable'
+import { MAX_NAME_LENGTH } from '../constants'
 
 describe('Match Reducers', () => {
   describe('Add Points', () => {
@@ -415,6 +416,72 @@ describe('Match Reducers', () => {
         results: Map({
           '1': ResultsRecord({
             winner: 'tie'
+          })
+        })
+      })
+      expect(match(IS, action)).toEqual(expected)
+    })
+  })
+
+  describe('Change Player Name', () => {
+    const action = { type: T.CHANGE_PLAYER_NAME, payload: {} }
+    const IS = INITIAL_STATE({
+      players: Map({
+        '1': PlayerRecord({
+          id: '1',
+          name: 'test',
+          currentPoints: 8000
+        }),
+        '2': PlayerRecord({
+          id: '2',
+          name: 'test2',
+          currentPoints: 8000
+        })
+      })
+    })
+
+    test('changes the players name', () => {
+      action.payload.player = '1'
+      action.payload.name = 'testchanged'
+
+      const expected = INITIAL_STATE({
+        players: Map({
+          '1': PlayerRecord({
+            id: '1',
+            name: 'testchanged',
+            currentPoints: 8000
+          }),
+          '2': PlayerRecord({
+            id: '2',
+            name: 'test2',
+            currentPoints: 8000
+          })
+        })
+      })
+      expect(match(IS, action)).toEqual(expected)
+    })
+
+    test('do nothing if players name doesnt exist', () => {
+      action.payload.player = '3'
+      action.payload.name = 'testchanged'
+      expect(match(IS, action)).toEqual(IS)
+    })
+
+    test('do nothing if players name doesnt exist', () => {
+      action.payload.player = '1'
+      action.payload.name = 'verylongtextshouldbestop'
+
+      const expected = INITIAL_STATE({
+        players: Map({
+          '1': PlayerRecord({
+            id: '1',
+            name: 'verylongtextshouldbestop'.substring(0, MAX_NAME_LENGTH),
+            currentPoints: 8000
+          }),
+          '2': PlayerRecord({
+            id: '2',
+            name: 'test2',
+            currentPoints: 8000
           })
         })
       })

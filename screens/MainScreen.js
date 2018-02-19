@@ -6,17 +6,20 @@ import * as actions from '../actions'
 import { DuelHistoryContainer, LifePointsContainer } from '../containers'
 import type { StateRE } from '../types/match'
 import type { ToggleCalculatorVisibility } from '../actions/calculator'
+import type { ChangePlayerName } from '../actions/match'
 
 type Props = {
   match: StateRE,
-  toggleCalculatorVisibility: ToggleCalculatorVisibility
+  toggleCalculatorVisibility: ToggleCalculatorVisibility,
+  changePlayerName: ChangePlayerName
 }
 
 class Main extends Component<Props> {
   render () {
     const {
       match: { logs, players, results, currentDuel },
-      toggleCalculatorVisibility
+      toggleCalculatorVisibility,
+      changePlayerName
     } = this.props
 
     return (
@@ -26,6 +29,7 @@ class Main extends Component<Props> {
             players={players}
             results={results}
             toggleCalculatorVisibility={toggleCalculatorVisibility}
+            changePlayerName={changePlayerName}
           />
         </View>
         <DuelHistoryContainer

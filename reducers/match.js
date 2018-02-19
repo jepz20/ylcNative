@@ -7,7 +7,8 @@ import {
   DRAW,
   HALF_POINTS,
   ADD_POINTS,
-  SUBSTRACT_POINTS
+  SUBSTRACT_POINTS,
+  CHANGE_PLAYER_NAME
 } from '../actions/types'
 import type {
   StateRE,
@@ -22,9 +23,14 @@ import type {
 } from '../types/match'
 import type { Action } from '../actions/match'
 import { parsePoints, getId } from '../utils'
-// TODO: Use AsyncStorage instead of hardcoded values
-import { DEFAULT_POINTS, PLAYER_1_NAME, PLAYER_2_NAME } from '../constants'
+import {
+  DEFAULT_POINTS,
+  PLAYER_1_NAME,
+  PLAYER_2_NAME,
+  MAX_NAME_LENGTH
+} from '../constants'
 
+// TODO: Use AsyncStorage instead of hardcoded values
 export const PlayerRecord: RecordFactory<Player> = Record({
   id: getId(),
   name: 'Default',
@@ -177,6 +183,25 @@ const draw = (state: StateRE, logId: string): StateRE => {
   })
 }
 
+const changePlayerName = (
+  state: StateRE,
+  name: string,
+  player: string
+): StateRE => {
+  if (!playerExist(state.players, player)) return state
+  name =
+    name.length <= MAX_NAME_LENGTH ? name : name.substring(0, MAX_NAME_LENGTH)
+  const players = state.players.mergeDeep({
+    [player]: {
+      name
+    }
+  })
+
+  return state.merge({
+    players
+  })
+}
+
 export default function (state: StateRE = INITIAL_STATE(), action: Action) {
   switch (action.type) {
     case ADD_POINTS: {
@@ -206,6 +231,10 @@ export default function (state: StateRE = INITIAL_STATE(), action: Action) {
     case DRAW:
       const { logId } = action.payload
       return draw(state, logId)
+    case CHANGE_PLAYER_NAME: {
+      const { name, player } = action.payload
+      return changePlayerName(state, name, player)
+    }
     default:
       return state
   }

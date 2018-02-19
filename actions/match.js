@@ -1,7 +1,6 @@
 // @flow
 
 import * as T from './types'
-import { getId } from '../utils'
 
 type PlayerPayload = {
   player: string,
@@ -37,12 +36,21 @@ type SubstractPointsAction = {
   payload: PlayerPayload & PointsPayload
 }
 
+type ChangePlayerNameAction = {
+  type: T.CHANGE_PLAYER_NAME_STR,
+  payload: {
+    name: string,
+    player: string
+  }
+}
+
 export type Action =
   | ScoopMatchAction
   | DrawAction
   | HalfPointsAction
   | AddPointsAction
   | SubstractPointsAction
+  | ChangePlayerNameAction
 
 export type ScoopMatch = (player: string, logId: string) => ScoopMatchAction
 export const scoopMatch: ScoopMatch = (player, logId) => ({
@@ -82,4 +90,13 @@ export type SubstractPoints = (
 export const substractPoints: SubstractPoints = (points, player, logId) => ({
   type: T.SUBSTRACT_POINTS,
   payload: { points, player, logId }
+})
+
+export type ChangePlayerName = (
+  name: string,
+  player: string
+) => ChangePlayerNameAction
+export const changePlayerName: ChangePlayerName = (name, player) => ({
+  type: T.CHANGE_PLAYER_NAME,
+  payload: { name, player }
 })
