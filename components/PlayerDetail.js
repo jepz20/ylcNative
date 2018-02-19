@@ -27,29 +27,30 @@ const renderResultsIndicator = (results, id) => {
   return mapDueslPerMatch(fillresults)
 }
 
-const PlayerDetail: React.StatelessFunctionalComponent<Props> = ({
-  results = Map(),
-  id,
-  name,
-  currentPoints,
-  changePlayerName
-}) => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.resultsContainer}>
-        {!results.isEmpty() && renderResultsIndicator(results, id)}
+class PlayerDetail extends React.Component<Props> {
+  onChangeText = (ev: string) => {
+    const { changePlayerName, id } = this.props
+    changePlayerName(ev, id)
+  }
+  render () {
+    const { results = Map(), id, name, currentPoints } = this.props
+    return (
+      <View style={styles.container}>
+        <View style={styles.resultsContainer}>
+          {!results.isEmpty() && renderResultsIndicator(results, id)}
+        </View>
+        <PointsCounter value={currentPoints} />
+        <View style={styles.playerNameContainer}>
+          <TextInput
+            underlineColorAndroid='transparent'
+            style={styles.playerNameText}
+            onChangeText={this.onChangeText}
+            value={name}
+          />
+        </View>
       </View>
-      <PointsCounter value={currentPoints} />
-      <View style={styles.playerNameContainer}>
-        <TextInput
-          underlineColorAndroid='transparent'
-          style={styles.playerNameText}
-          onChangeText={ev => changePlayerName(ev, id)}
-          value={name}
-        />
-      </View>
-    </View>
-  )
+    )
+  }
 }
 
 const styles = StyleSheet.create({

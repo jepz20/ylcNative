@@ -57,7 +57,7 @@ describe('PlayerDetail', () => {
     expect(playerDetail).toMatchSnapshot()
   })
 
-  test('counter animation is not called if props value is the same', () => {
+  test('onchangetext calls change name', () => {
     const changePlayerName = jest.fn()
     const results = Map({
       '1': result({ winner: '1' })
@@ -71,6 +71,7 @@ describe('PlayerDetail', () => {
         changePlayerName={changePlayerName}
       />
     )
-    expect(playerDetail).toMatchSnapshot()
+    playerDetail.instance().onChangeText()
+    expect(changePlayerName).toBeCalled()
   })
 })
