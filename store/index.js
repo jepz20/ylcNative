@@ -1,6 +1,16 @@
 import { createStore } from 'redux'
 import reducers from '../reducers'
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
-const store = createStore(reducers)
+import immutableTransform from 'redux-persist-transform-immutable'
 
-export default store
+const persistConfig = {
+  key: 'jepz-rootYLC',
+  storage,
+  transform: [immutableTransform()]
+}
+
+export const store = createStore(persistReducer(persistConfig, reducers))
+// export const store = createStore(reducers)
+export const persistor = persistStore(store)

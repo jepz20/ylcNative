@@ -29,22 +29,29 @@ import {
   PLAYER_2_NAME,
   MAX_NAME_LENGTH
 } from '../constants'
+import { REHYDRATE } from 'redux-persist'
 
 // TODO: Use AsyncStorage instead of hardcoded values
-export const PlayerRecord: RecordFactory<Player> = Record({
-  id: getId(),
-  name: 'Default',
-  currentPoints: DEFAULT_POINTS
-})
+export const PlayerRecord: RecordFactory<Player> = Record(
+  {
+    id: getId(),
+    name: 'Default',
+    currentPoints: DEFAULT_POINTS
+  },
+  'Player'
+)
 
-export const LogsRecord: RecordFactory<Log> = Record({
-  id: getId(),
-  playerId: '0',
-  operationValue: 0,
-  currentPoints: 0,
-  previousPoints: 0,
-  type: 'operation'
-})
+export const LogsRecord: RecordFactory<Log> = Record(
+  {
+    id: getId(),
+    playerId: '0',
+    operationValue: 0,
+    currentPoints: 0,
+    previousPoints: 0,
+    type: 'operation'
+  },
+  'Record'
+)
 
 export const ResultsRecord: RecordFactory<Result> = Record({
   winner: null
@@ -204,6 +211,14 @@ const changePlayerName = (
 
 export default function (state: StateRE = INITIAL_STATE(), action: Action) {
   switch (action.type) {
+    case REHYDRATE:
+      console.log('rehydare', state.currentDuel)
+      return INITIAL_STATE({
+        players: Map(state.players),
+        currentDuel: state.currentDuel,
+        logs: state.logs || new Map(),
+        results: state.results || new Map()
+      })
     case ADD_POINTS: {
       const { points, player, logId } = action.payload
       const operationValue = parsePoints(points)
@@ -236,6 +251,7 @@ export default function (state: StateRE = INITIAL_STATE(), action: Action) {
       return changePlayerName(state, name, player)
     }
     default:
+      console.log('called with no state')
       return state
   }
 }

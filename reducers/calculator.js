@@ -16,6 +16,7 @@ import {
 } from '../constants'
 
 import { parsePoints } from '../utils'
+import { REHYDRATE } from 'redux-persist'
 export type State = {
   value: string,
   currentPlayer: string | null,
@@ -65,7 +66,14 @@ export default function (
   action: Action
 ): StateRE {
   const { value } = state
+  console.log(state, 'STATE CALCULATOR')
   switch (action.type) {
+    case REHYDRATE:
+      return INITIAL_STATE({
+        currentPlayer: state.currentPlayer,
+        value: state.value,
+        visible: state.visible
+      })
     case DIGIT_PRESS:
       return state.merge({
         value: getCalculatedValue(value, action.payload.digit)
@@ -81,6 +89,7 @@ export default function (
       return state.merge({ value: CALCULATOR_DEFAULT_VALUE })
     }
     default:
+      console.log('called with no state')
       return state
   }
 }
