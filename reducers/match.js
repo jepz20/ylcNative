@@ -212,12 +212,26 @@ const changePlayerName = (
 export default function (state: StateRE = INITIAL_STATE(), action: Action) {
   switch (action.type) {
     case REHYDRATE:
-      console.log('rehydare', state.currentDuel)
+      const { payload: { match } = {} } = action
+      if (!match) return state
+      let logs = Map()
+      Object.entries(match.logs).forEach(([key, value]) => {
+        // $FlowFixMe
+        logs = logs.set(key, List(value.map(it => LogsRecord(it))))
+      })
+      let players = Map()
+      Object.entries(match.players).forEach(([key, value]) => {
+        players = players.set(key, PlayerRecord(value))
+      })
+      let results = Map()
+      Object.entries(match.results).forEach(([key, value]) => {
+        results = results.set(key, ResultsRecord(value))
+      })
       return INITIAL_STATE({
-        players: Map(state.players),
-        currentDuel: state.currentDuel,
-        logs: state.logs || new Map(),
-        results: state.results || new Map()
+        players,
+        currentDuel: match.currentDuel,
+        logs: logs,
+        results: results
       })
     case ADD_POINTS: {
       const { points, player, logId } = action.payload
@@ -251,7 +265,6 @@ export default function (state: StateRE = INITIAL_STATE(), action: Action) {
       return changePlayerName(state, name, player)
     }
     default:
-      console.log('called with no state')
       return state
   }
 }

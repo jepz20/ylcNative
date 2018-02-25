@@ -7,6 +7,7 @@ import match, {
 import * as T from '../actions/types'
 import { Map, List } from 'immutable'
 import { MAX_NAME_LENGTH } from '../constants'
+import { REHYDRATE } from 'redux-persist'
 
 describe('Match Reducers', () => {
   describe('Add Points', () => {
@@ -485,6 +486,63 @@ describe('Match Reducers', () => {
           })
         })
       })
+      expect(match(IS, action)).toEqual(expected)
+    })
+  })
+
+  describe('Rehydrates', () => {
+    const action = { type: REHYDRATE, payload: {} }
+    const IS = INITIAL_STATE({
+      players: Map({
+        '1': PlayerRecord({
+          id: '1',
+          name: 'test',
+          currentPoints: 8000
+        }),
+        '2': PlayerRecord({
+          id: '2',
+          name: 'test2',
+          currentPoints: 8000
+        })
+      })
+    })
+
+    test('rehydrates with no value', () => {
+      expect(match(IS, action)).toEqual(IS)
+    })
+
+    test('rehydrates with changes', () => {
+      const expected = INITIAL_STATE({
+        players: Map({
+          '1': PlayerRecord({
+            id: '1',
+            name: 'verylongtextshouldbestop'.substring(0, MAX_NAME_LENGTH),
+            currentPoints: 8000
+          }),
+          '2': PlayerRecord({
+            id: '2',
+            name: 'test2',
+            currentPoints: 8000
+          })
+        }),
+        results: Map({
+          '1': ResultsRecord({
+            winner: '1'
+          })
+        }),
+        logs: Map({
+          '1': List([
+            LogsRecord({
+              currentPoints: 9358,
+              id: '1',
+              operationValue: 1358,
+              playerId: '1',
+              previousPoints: 8000
+            })
+          ])
+        })
+      })
+      action.payload.match = expected.toJS()
       expect(match(IS, action)).toEqual(expected)
     })
   })

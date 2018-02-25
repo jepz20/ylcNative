@@ -339,3 +339,16 @@ exports[`DuelHistoryContainer renders correctly with one player 1`] = `
   </RCTScrollView>
 </View>
 `;
+
+exports[`DuelHistoryContainer renders with no props 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "flex": 5,
+        "flexDirection": "row",
+      },
+    ]
+  }
+/>
+`;

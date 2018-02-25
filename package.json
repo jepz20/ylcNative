@@ -54,7 +54,7 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-persist": "^5.9.1",
-    "redux-persist-transform-immutable": "^5.0.0"
+    "remotedev-serialize": "^0.1.0"
   },
   "standard": {
     "parser": "babel-eslint",

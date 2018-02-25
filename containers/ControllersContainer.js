@@ -19,7 +19,7 @@ const ControllersContainerWithoutRedux = ({
     >
       <View style={{ flex: 1, right: 0 }}>
         <TouchableWithoutFeedback
-          onPress={toggleCalculatorVisibility}
+          onPress={() => toggleCalculatorVisibility()}
           style={{ right: 0 }}
         >
           <View style={{ flex: 1 }} />

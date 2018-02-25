@@ -3,8 +3,7 @@ import reducers from '../reducers'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-import immutableTransform from 'redux-persist-transform-immutable'
-
+import immutableTransform from './transform'
 const persistConfig = {
   key: 'jepz-rootYLC',
   storage,
