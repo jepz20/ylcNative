@@ -30,7 +30,6 @@ const PlayerHistory = ({
   toggleCalculatorVisibility
 }: Props) => {
   const currentLog: ?LogList = logs.get(String(currentDuel))
-
   const renderLog = (currentLog: LogList) =>
     currentLog
       .reverse()

@@ -11,6 +11,13 @@ describe('DuelHistoryContainer', () => {
     currentPoints: '8000'
   })
 
+  test('renders with no props', () => {
+    const duelHistoryContainer = renderer
+      .create(<DuelHistoryContainer />)
+      .toJSON()
+    expect(duelHistoryContainer).toMatchSnapshot()
+  })
+
   test('renders correctly with one player', () => {
     const players = Map({
       '1': playerRE()

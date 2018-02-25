@@ -5,7 +5,7 @@ import { View, StyleSheet } from 'react-native'
 import { PlayerHistory } from '../components'
 import type { PlayerMap, LogMap } from '../types/match'
 import type { ToggleCalculatorVisibility } from '../actions/calculator'
-
+import { Map } from 'immutable'
 type Props = {
   players: PlayerMap,
   logs: LogMap,
@@ -14,7 +14,7 @@ type Props = {
 }
 
 const DuelHistoryContainer = ({
-  players,
+  players = new Map(),
   logs,
   currentDuel,
   toggleCalculatorVisibility

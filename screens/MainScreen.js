@@ -21,7 +21,6 @@ class Main extends Component<Props> {
       toggleCalculatorVisibility,
       changePlayerName
     } = this.props
-
     return (
       <View style={styles.container}>
         <View style={styles.LifePointsContainerWrapper}>

@@ -5,6 +5,7 @@ import {
   MAX_VALUE_LENGTH,
   CALCULATOR_DEFAULT_VALUE
 } from '../constants'
+import { REHYDRATE } from 'redux-persist'
 
 describe('Calculator Reducers', () => {
   describe('Digit Press', () => {
@@ -137,6 +138,25 @@ describe('Calculator Reducers', () => {
         visible: true,
         value: CALCULATOR_DEFAULT_VALUE
       })
+      expect(calculator(IS, action)).toEqual(expected)
+    })
+  })
+
+  describe('Rehydrates', () => {
+    const action = { type: REHYDRATE, payload: {} }
+    const IS = INITIAL_STATE()
+
+    test('rehydrates with no value', () => {
+      expect(calculator(IS, action)).toEqual(IS)
+    })
+
+    test('rehydrates with changes', () => {
+      const expected = INITIAL_STATE({
+        value: 10,
+        visible: true,
+        currentPlayer: 2
+      })
+      action.payload.calculator = expected.toJS()
       expect(calculator(IS, action)).toEqual(expected)
     })
   })
