@@ -38,16 +38,11 @@ exports[`DigitsContainer renders with no props 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -114,16 +109,11 @@ exports[`DigitsContainer renders with no props 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -165,16 +155,11 @@ exports[`DigitsContainer renders with no props 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -218,16 +203,11 @@ exports[`DigitsContainer renders with no props 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -271,16 +251,11 @@ exports[`DigitsContainer renders with no props 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -335,16 +310,11 @@ exports[`DigitsContainer renders with no props 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -388,16 +358,11 @@ exports[`DigitsContainer renders with no props 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -441,16 +406,11 @@ exports[`DigitsContainer renders with no props 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -505,16 +465,11 @@ exports[`DigitsContainer renders with no props 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -558,16 +513,11 @@ exports[`DigitsContainer renders with no props 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -611,16 +561,11 @@ exports[`DigitsContainer renders with no props 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -675,16 +620,11 @@ exports[`DigitsContainer renders with no props 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -728,16 +668,11 @@ exports[`DigitsContainer renders with no props 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -781,16 +716,11 @@ exports[`DigitsContainer renders with no props 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -857,16 +787,11 @@ exports[`DigitsContainer renders with value 2 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -882,7 +807,7 @@ exports[`DigitsContainer renders with value 2 1`] = `
               "color": "#fff",
               "fontSize": 40,
             },
-            undefined,
+            null,
             Object {
               "fontFamily": "entypo",
               "fontStyle": "normal",
@@ -951,16 +876,11 @@ exports[`DigitsContainer renders with value 2 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -976,7 +896,7 @@ exports[`DigitsContainer renders with value 2 1`] = `
               "color": "#fff",
               "fontSize": 40,
             },
-            undefined,
+            null,
             Object {
               "fontFamily": "entypo",
               "fontStyle": "normal",
@@ -1018,16 +938,11 @@ exports[`DigitsContainer renders with value 2 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -1071,16 +986,11 @@ exports[`DigitsContainer renders with value 2 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -1124,16 +1034,11 @@ exports[`DigitsContainer renders with value 2 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -1188,16 +1093,11 @@ exports[`DigitsContainer renders with value 2 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -1241,16 +1141,11 @@ exports[`DigitsContainer renders with value 2 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -1294,16 +1189,11 @@ exports[`DigitsContainer renders with value 2 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -1358,16 +1248,11 @@ exports[`DigitsContainer renders with value 2 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -1411,16 +1296,11 @@ exports[`DigitsContainer renders with value 2 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -1464,16 +1344,11 @@ exports[`DigitsContainer renders with value 2 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -1528,16 +1403,11 @@ exports[`DigitsContainer renders with value 2 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -1581,16 +1451,11 @@ exports[`DigitsContainer renders with value 2 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}
@@ -1634,16 +1499,11 @@ exports[`DigitsContainer renders with value 2 1`] = `
       style={
         Array [
           Object {
-            "backgroundColor": "transparent",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
           },
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            },
-            undefined,
-          ],
+          undefined,
         ]
       }
       testID={undefined}

@@ -20,16 +20,11 @@ exports[`IconButton Renders a button with a icon 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "transparent",
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
       },
-      Array [
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-        },
-        undefined,
-      ],
+      undefined,
     ]
   }
   testID={undefined}
@@ -63,16 +58,11 @@ exports[`IconButton Renders a button with default size 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "transparent",
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
       },
-      Array [
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-        },
-        undefined,
-      ],
+      undefined,
     ]
   }
   testID={undefined}
@@ -88,7 +78,7 @@ exports[`IconButton Renders a button with default size 1`] = `
           "color": "#fff",
           "fontSize": 12,
         },
-        undefined,
+        null,
         Object {
           "fontFamily": "entypo",
           "fontStyle": "normal",
@@ -122,16 +112,11 @@ exports[`IconButton doesnt renders a children 1`] = `
   style={
     Array [
       Object {
-        "backgroundColor": "transparent",
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
       },
-      Array [
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-        },
-        undefined,
-      ],
+      undefined,
     ]
   }
   testID={undefined}
@@ -147,7 +132,7 @@ exports[`IconButton doesnt renders a children 1`] = `
           "color": "#fff",
           "fontSize": 40,
         },
-        undefined,
+        null,
         Object {
           "fontFamily": "entypo",
           "fontStyle": "normal",
