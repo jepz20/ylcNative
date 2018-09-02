@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renderEl should return the same component 1`] = `
-<View>
+<Component>
   <Text
     accessible={true}
     allowFontScaling={true}
@@ -9,7 +9,7 @@ exports[`renderEl should return the same component 1`] = `
   >
     Hola
   </Text>
-</View>
+</Component>
 `;
 
 exports[`renderEl should return the string wrap in text component 1`] = `

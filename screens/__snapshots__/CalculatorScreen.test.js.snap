@@ -95,16 +95,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "transparent",
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
               },
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "justifyContent": "center",
-                },
-                undefined,
-              ],
+              undefined,
             ]
           }
           testID={undefined}
@@ -161,16 +156,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "transparent",
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
               },
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "justifyContent": "center",
-                },
-                undefined,
-              ],
+              undefined,
             ]
           }
           testID={undefined}
@@ -214,16 +204,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "transparent",
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
               },
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "justifyContent": "center",
-                },
-                undefined,
-              ],
+              undefined,
             ]
           }
           testID={undefined}
@@ -280,16 +265,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "transparent",
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
               },
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "justifyContent": "center",
-                },
-                undefined,
-              ],
+              undefined,
             ]
           }
           testID={undefined}
@@ -333,16 +313,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "transparent",
+                "alignItems": "center",
+                "flex": 1,
+                "justifyContent": "center",
               },
-              Array [
-                Object {
-                  "alignItems": "center",
-                  "flex": 1,
-                  "justifyContent": "center",
-                },
-                undefined,
-              ],
+              undefined,
             ]
           }
           testID={undefined}
@@ -407,16 +382,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
             },
-            Array [
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              },
-              undefined,
-            ],
+            undefined,
           ]
         }
         testID={undefined}
@@ -483,16 +453,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
             },
-            Array [
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              },
-              undefined,
-            ],
+            undefined,
           ]
         }
         testID={undefined}
@@ -534,16 +499,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
             },
-            Array [
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              },
-              undefined,
-            ],
+            undefined,
           ]
         }
         testID={undefined}
@@ -587,16 +547,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
             },
-            Array [
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              },
-              undefined,
-            ],
+            undefined,
           ]
         }
         testID={undefined}
@@ -640,16 +595,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
             },
-            Array [
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              },
-              undefined,
-            ],
+            undefined,
           ]
         }
         testID={undefined}
@@ -704,16 +654,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
             },
-            Array [
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              },
-              undefined,
-            ],
+            undefined,
           ]
         }
         testID={undefined}
@@ -757,16 +702,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
             },
-            Array [
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              },
-              undefined,
-            ],
+            undefined,
           ]
         }
         testID={undefined}
@@ -810,16 +750,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
             },
-            Array [
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              },
-              undefined,
-            ],
+            undefined,
           ]
         }
         testID={undefined}
@@ -874,16 +809,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
             },
-            Array [
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              },
-              undefined,
-            ],
+            undefined,
           ]
         }
         testID={undefined}
@@ -927,16 +857,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
             },
-            Array [
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              },
-              undefined,
-            ],
+            undefined,
           ]
         }
         testID={undefined}
@@ -980,16 +905,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
             },
-            Array [
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              },
-              undefined,
-            ],
+            undefined,
           ]
         }
         testID={undefined}
@@ -1044,16 +964,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
             },
-            Array [
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              },
-              undefined,
-            ],
+            undefined,
           ]
         }
         testID={undefined}
@@ -1097,16 +1012,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
             },
-            Array [
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              },
-              undefined,
-            ],
+            undefined,
           ]
         }
         testID={undefined}
@@ -1150,16 +1060,11 @@ exports[`CalculatorScreen renders as connected component when visible 1`] = `
         style={
           Array [
             Object {
-              "backgroundColor": "transparent",
+              "alignItems": "center",
+              "flex": 1,
+              "justifyContent": "center",
             },
-            Array [
-              Object {
-                "alignItems": "center",
-                "flex": 1,
-                "justifyContent": "center",
-              },
-              undefined,
-            ],
+            undefined,
           ]
         }
         testID={undefined}
